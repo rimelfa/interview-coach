@@ -1,0 +1,29 @@
+# Redirect rules for Good Chat - thegoodchatapp.com
+
+# Redirect index.html to root to prevent duplicate content
+/index.html / 301
+
+# Redirect login URLs with redirect parameters to clean login URL
+/login?redirect=test /login 301
+/login?redirect=practice /login 301  
+/login?redirect=dashboard /login 301
+/login?redirect=profile /login 301
+
+# Redirect non-existent SEO pages that were returning homepage content
+/mock-interview-practice / 301
+/ai-interview-coach / 301  
+/behavioral-interview-questions / 301
+/technical-interview-practice / 301
+/interview-preparation-guide / 301
+/company-specific-interviews / 301
+
+# Redirect livereload and development URLs
+/livereload / 301
+
+# Fallback for SPA routes (existing pages should work)
+/* /index.html 200
+
+# 404 for truly non-existent files
+/*.php /404.html 404
+/*.asp /404.html 404
+/*.jsp /404.html 404

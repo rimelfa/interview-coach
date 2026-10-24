@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Authenticating...</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #f5f5f5;
+        }
+        .loading {
+            text-align: center;
+        }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading">
+        <div class="spinner"></div>
+        <h2>Signing you in...</h2>
+        <p>Please wait while we complete your authentication.</p>
+    </div>
+
+    <script>
+        // Check for auth tokens in URL params
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
+        const user = urlParams.get('user');
+        
+        if (token && user) {
+            // Store auth data
+            localStorage.setItem('authToken', token);
+            localStorage.setItem('user', atob(user));
+            
+            // Redirect to home page
+            setTimeout(() => {
+                window.location.href = '/';
+            }, 1000);
+        } else {
+            // No auth data, redirect to login
+            setTimeout(() => {
+                window.location.href = '/login?error=auth_failed';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

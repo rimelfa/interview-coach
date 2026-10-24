@@ -1,0 +1,1799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <title>Admin Dashboard - Good Chat</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            position: relative;
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .header-actions {
+            color: white;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .refresh-btn {
+            background: rgba(255, 255, 255, 0.1) !important;
+            color: white !important;
+            border: 1px solid rgba(255, 255, 255, 0.3) !important;
+            padding: 0.5rem 1rem !important;
+            border-radius: 8px !important;
+            cursor: pointer !important;
+            font-size: 0.9rem !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .refresh-btn:hover {
+            background: rgba(255, 255, 255, 0.2) !important;
+            transform: translateY(-1px) !important;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Loading message and dashboard content styling */
+        #dashboardContent {
+            display: none;
+        }
+        
+        #loadingMessage {
+            display: block;
+            text-align: center;
+            color: white;
+            font-size: 1.2rem;
+            margin-top: 2rem;
+        }
+        
+        .loading-text {
+            margin-bottom: 1rem;
+        }
+        
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: none; /* Hidden by default */
+        }
+        
+        .container.admin-verified {
+            display: block; /* Show only for verified admin */
+        }
+
+        .dashboard-title {
+            color: white;
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .dashboard-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .metric-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .metric-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+        }
+
+        .metric-title {
+            font-size: 1.1rem;
+            color: #4a5568;
+            font-weight: 600;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-change {
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .metric-change.positive {
+            color: #38a169;
+        }
+
+        .metric-change.negative {
+            color: #e53e3e;
+        }
+
+        .metric-change.neutral {
+            color: #718096;
+        }
+
+        .metric-breakdown {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .breakdown-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .breakdown-item.verified {
+            color: #38a169;
+        }
+
+        .breakdown-item.unverified {
+            color: #f59e0b;
+        }
+
+        .breakdown-item.google-auth {
+            color: #4285f4;
+        }
+
+        .breakdown-item.email-auth {
+            color: #8b5cf6;
+        }
+
+        .breakdown-label {
+            font-weight: 500;
+        }
+
+        .breakdown-value {
+            font-weight: 700;
+        }
+
+        .charts-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .chart-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            height: 350px;
+        }
+
+        .chart-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .chart-canvas-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #718096;
+        }
+
+        .error {
+            background: #fed7d7;
+            color: #c53030;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .refresh-btn {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.2s ease;
+        }
+
+        .refresh-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .recent-activity {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .tester-insights {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 2rem;
+        }
+
+        .tester-list-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 1.25rem;
+            border: 1px solid #e2e8f0;
+            overflow-x: auto;
+        }
+
+        .activity-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-text {
+            color: #4a5568;
+        }
+
+        .activity-time {
+            color: #718096;
+            font-size: 0.9rem;
+        }
+
+        .tester-details summary {
+            cursor: pointer;
+            color: #2d3748;
+            font-weight: 600;
+        }
+
+        .tester-user-list {
+            display: grid;
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        .tester-details {
+            background: #f8fafc;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            padding: 0.75rem 1rem;
+        }
+
+        .tester-details[open] {
+            background: #ffffff;
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+        }
+
+        .tester-details summary::-webkit-details-marker {
+            color: #64748b;
+        }
+
+        .tester-details-content {
+            margin-top: 0.75rem;
+            padding: 0.75rem;
+            background: #f8fafc;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .tester-details-item {
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .tester-details-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .tester-details-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+
+        .tester-details-text {
+            font-size: 0.9rem;
+            color: #2d3748;
+            white-space: pre-wrap;
+            max-height: 160px;
+            overflow: auto;
+        }
+
+        .tester-toggle-btn {
+            background: #e2e8f0;
+            color: #1e293b;
+            border: none;
+            border-radius: 999px;
+            padding: 0.35rem 0.8rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .tester-toggle-btn.active {
+            background: #c7d2fe;
+            color: #1e3a8a;
+        }
+
+        .tester-row {
+            display: none;
+            background: #f8fafc;
+        }
+
+        .tester-row.open {
+            display: table-row;
+        }
+
+        .tester-cell {
+            padding: 1rem 1rem 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .dashboard-title {
+                font-size: 2rem;
+            }
+            
+            .dashboard-subtitle {
+                font-size: 0.9rem;
+                margin-bottom: 2rem;
+            }
+            
+            .metrics-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .charts-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .chart-card {
+                height: 300px;
+            }
+            
+            .chart-canvas-container {
+                height: 200px !important;
+            }
+            
+            .header {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+            
+            .date-filter-section {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 1rem;
+            }
+            
+            .date-filter-section select {
+                width: 100%;
+                max-width: 250px;
+            }
+            
+            .user-activity-table {
+                padding: 0.5rem;
+                overflow-x: auto;
+            }
+            
+            .activity-table {
+                font-size: 0.85rem;
+                min-width: 800px;
+            }
+            
+            .activity-table th,
+            .activity-table td {
+                padding: 0.5rem;
+            }
+            
+            .status-badge {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.5rem;
+            }
+            
+            .metric-card {
+                padding: 1.5rem;
+            }
+            
+            .metric-value {
+                font-size: 2rem;
+            }
+            
+            .chart-card {
+                padding: 1rem;
+            }
+            
+            .chart-title {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            /* Guest sessions table — fit without horizontal scroll */
+            .tester-list-card {
+                padding: 0.75rem;
+                overflow-x: visible;
+            }
+
+            .tester-list-card .activity-table {
+                min-width: 0;
+                width: 100%;
+                font-size: 0.8rem;
+            }
+
+            /* Fix column widths for the 3 visible cols: Guest ID, Date & Time, Details */
+            .tester-list-card .activity-table th:nth-child(2),
+            .tester-list-card .activity-table tr:not([id^="guest-detail"]) td:nth-child(2) {
+                width: 35%;
+                white-space: nowrap;
+            }
+
+            .tester-list-card .activity-table th:nth-child(3),
+            .tester-list-card .activity-table tr:not([id^="guest-detail"]) td:nth-child(3) {
+                width: 45%;
+            }
+
+            .tester-list-card .activity-table th:nth-child(5),
+            .tester-list-card .activity-table tr:not([id^="guest-detail"]) td:nth-child(5) {
+                width: 20%;
+                white-space: nowrap;
+            }
+
+            /* Detail expand row — let it span full width cleanly */
+            .tester-list-card .activity-table tr[id^="guest-detail"] td {
+                padding: 8px 4px !important;
+            }
+
+            .tester-list-card .activity-table tr[id^="guest-detail"] td > div {
+                max-width: 100%;
+                box-sizing: border-box;
+                overflow-wrap: break-word;
+                word-break: break-word;
+            }
+
+            /* Hide # column and Job Title column on mobile — but not detail expand rows */
+            .tester-list-card .activity-table th:nth-child(1),
+            .tester-list-card .activity-table tr:not([id^="guest-detail"]) td:nth-child(1),
+            .tester-list-card .activity-table th:nth-child(4),
+            .tester-list-card .activity-table tr:not([id^="guest-detail"]) td:nth-child(4) {
+                display: none;
+            }
+
+            /* Truncate guest ID so it doesn't overflow */
+            .tester-list-card .activity-table td:nth-child(2) code {
+                max-width: 110px;
+                display: inline-block;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                vertical-align: bottom;
+            }
+
+            /* Detail cards: single column on mobile */
+            .tester-list-card .activity-table td[colspan] > div > div[style*="grid"] {
+                grid-template-columns: 1fr 1fr !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .dashboard-title {
+                font-size: 1.5rem;
+            }
+            
+            .container {
+                padding: 0.5rem;
+            }
+            
+            .header {
+                padding: 0.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .date-filter-section {
+                margin-bottom: 2rem;
+            }
+            
+            .metric-card {
+                padding: 1rem;
+            }
+            
+            .metric-value {
+                font-size: 1.5rem;
+            }
+            
+            .metric-icon {
+                font-size: 1.5rem;
+            }
+            
+            .activity-table {
+                font-size: 0.8rem;
+            }
+            
+            .activity-table th,
+            .activity-table td {
+                padding: 0.4rem 0.3rem;
+            }
+            
+            .chart-card {
+                padding: 0.75rem;
+                height: 250px;
+            }
+            
+            .chart-canvas-container {
+                height: 150px !important;
+            }
+            
+            .recent-activity-content {
+                padding: 1rem;
+            }
+            
+            .activity-item {
+                padding: 0.75rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        .date-filter-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .date-filter-section label {
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .date-filter-section select {
+            padding: 0.75rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+            color: #374151;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        .date-filter-section select:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        .table-filter-section {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin: 0 0 1rem;
+            padding: 0.75rem 1rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .table-filter-section label {
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .table-filter-section select {
+            padding: 0.5rem 0.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            background: white;
+            color: #374151;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        .table-filter-section select:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        .user-activity-section {
+            margin-bottom: 3rem;
+        }
+
+        .user-activity-table {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            overflow-x: auto;
+        }
+
+        .activity-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .activity-table th,
+        .activity-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .activity-table th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: #374151;
+            position: sticky;
+            top: 0;
+        }
+
+        .activity-table th.sortable {
+            cursor: pointer;
+            position: sticky;
+            top: 0;
+            padding-right: 1.75rem;
+        }
+
+        .activity-table th.sortable::after {
+            content: "↕";
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.75rem;
+            color: #94a3b8;
+        }
+
+        .activity-table th.sortable.sort-asc::after {
+            content: "↑";
+            color: #4b5563;
+        }
+
+        .activity-table th.sortable.sort-desc::after {
+            content: "↓";
+            color: #4b5563;
+        }
+
+        .activity-table tr:hover {
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-verified {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .status-google {
+            background: #dbeafe;
+            color: #2563eb;
+        }
+
+        .status-traditional {
+            background: #f3e8ff;
+            color: #7c3aed;
+        }
+
+        .status-purchased {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .status-active {
+            background: #d1fae5;
+            color: #059669;
+        }
+
+        .status-warning {
+            background: #ffedd5;
+            color: #c2410c;
+        }
+
+        .status-neutral {
+            background: #e2e8f0;
+            color: #475569;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">🔧 Good Chat Admin</div>
+        <div class="header-actions">
+            <a href="/" class="back-btn">← Back to Home</a>
+            <button class="refresh-btn" onclick="refreshDashboard()">🔄 Refresh</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="loadingMessage">
+            <div class="loading-text">🔐 Verifying access...</div>
+            <div class="loading-spinner"></div>
+        </div>
+        
+        <div id="dashboardContent">
+            <h1 class="dashboard-title">📊 Analytics Dashboard</h1>
+            <p class="dashboard-subtitle">Real-time insights into your application performance</p>
+
+        <!-- Date Filter Controls -->
+        <div class="date-filter-section">
+            <label for="date-filter">📅 Filter by Date:</label>
+            <select id="date-filter" onchange="applyDateFilter()">
+                <option value="all_time">All Time</option>
+                <option value="today" selected>Today</option>
+                <option value="yesterday">Yesterday</option>
+                <option value="last_7_days">Last 7 Days</option>
+                <option value="last_30_days">Last 30 Days</option>
+                <option value="last_90_days">Last 90 Days</option>
+                <option value="last_year">Last Year</option>
+            </select>
+        </div>
+
+        <div id="error-message" class="error" style="display: none;"></div>
+
+        <div class="metrics-grid" id="metrics-grid">
+            <!-- Row 1: Top of funnel → engagement -->
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-icon">👁️</div>
+                    <div class="metric-title">Guest Sessions</div>
+                </div>
+                <div class="metric-value" id="guest-sessions">-</div>
+                <div class="metric-change neutral">
+                    <span id="guest-sessions-change">Loading...</span>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-icon">👥</div>
+                    <div class="metric-title">Total Users</div>
+                </div>
+                <div class="metric-value" id="total-users">-</div>
+                <div class="metric-breakdown">
+                    <div class="breakdown-item verified">
+                        <span class="breakdown-label">Verified:</span>
+                        <span class="breakdown-value" id="verified-users">-</span>
+                    </div>
+                    <div class="breakdown-item unverified">
+                        <span class="breakdown-label">Unverified:</span>
+                        <span class="breakdown-value" id="unverified-users">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-icon">🔐</div>
+                    <div class="metric-title">Auth Methods</div>
+                </div>
+                <div class="metric-value" id="total-auth-users">-</div>
+                <div class="metric-breakdown">
+                    <div class="breakdown-item google-auth">
+                        <span class="breakdown-label">Google:</span>
+                        <span class="breakdown-value" id="google-users">-</span>
+                    </div>
+                    <div class="breakdown-item email-auth">
+                        <span class="breakdown-label">Email:</span>
+                        <span class="breakdown-value" id="email-users">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-icon">🎁</div>
+                    <div class="metric-title">Free Trial Users</div>
+                </div>
+                <div class="metric-value" id="free-trial-users">-</div>
+                <div class="metric-change neutral">
+                    <span>On 3-question free trial</span>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-icon">🎯</div>
+                    <div class="metric-title">Practice Sessions</div>
+                </div>
+                <div class="metric-value" id="practice-sessions">-</div>
+                <div class="metric-change neutral">
+                    <span id="sessions-change">Loading...</span>
+                </div>
+            </div>
+
+            <!-- Row 2: Drop-off → conversion → revenue -->
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-icon">🧪</div>
+                    <div class="metric-title">Test Users</div>
+                </div>
+                <div class="metric-value" id="test-users">-</div>
+                <div class="metric-change neutral">
+                    <span id="test-users-change">Loading...</span>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-icon">⚠️</div>
+                    <div class="metric-title">Incomplete Payments</div>
+                </div>
+                <div class="metric-value" id="incomplete-payments">-</div>
+                <div class="metric-change neutral">
+                    <span id="incomplete-payments-change">Loading...</span>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-icon">📈</div>
+                    <div class="metric-title">Paid Subscriptions</div>
+                </div>
+                <div class="metric-value" id="active-subscriptions">-</div>
+                <div class="metric-change neutral">
+                    <span id="subscriptions-change">Active paying users</span>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-icon">🔄</div>
+                    <div class="metric-title">Conversion Rate</div>
+                </div>
+                <div class="metric-value" id="conversion-rate">-</div>
+                <div class="metric-change neutral">
+                    <span id="conversion-change">Loading...</span>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-icon">📚</div>
+                    <div class="metric-title">Questions Used</div>
+                </div>
+                <div class="metric-value" id="questions-used">-</div>
+                <div class="metric-change neutral">
+                    <span id="questions-per-user">Loading...</span>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-icon">🚫</div>
+                    <div class="metric-title">Cancelled Subs</div>
+                </div>
+                <div class="metric-value" id="cancelled-subscriptions">-</div>
+                <div class="metric-change neutral">
+                    <span>Cancelled subscriptions</span>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-icon">💰</div>
+                    <div class="metric-title">Revenue</div>
+                </div>
+                <div class="metric-value" id="total-revenue">-</div>
+                <div class="metric-change neutral">
+                    <span id="revenue-change">Total period revenue</span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="user-activity-section">
+            <h3 class="chart-title">👤 Detailed User Activity</h3>
+            <div class="table-filter-section">
+                <label for="package-filter">Filter:</label>
+                <select id="package-filter" onchange="applyPackageFilter()">
+                    <option value="all" selected>All Users</option>
+                    <option value="with_packages">Users with Packages</option>
+                </select>
+            </div>
+            <div class="user-activity-table" id="user-activity">
+                <div class="loading">Loading user activity...</div>
+            </div>
+        </div>
+
+        <div class="tester-insights">
+            <h3 class="chart-title">🧪 Tester Sessions by User</h3>
+            <div class="tester-list-card">
+                <div id="tester-user-list" class="tester-user-list">
+                    <div class="loading">Loading tester sessions...</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tester-insights">
+            <h3 class="chart-title">👁️ Guest Sessions</h3>
+            <div class="tester-list-card">
+                <div id="guest-session-list">
+                    <div class="loading">Loading guest sessions...</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="recent-activity">
+            <h3 class="chart-title">🕐 Recent Activity</h3>
+            <div id="recent-activities">
+                <div class="loading">Loading recent activities...</div>
+            </div>
+        </div>
+        
+        </div> <!-- End dashboardContent -->
+    </div> <!-- End container -->
+
+    <script>
+        // Global variables
+        let currentDateFilter = 'today';
+        let userActivityData = [];
+        let currentUserActivitySort = { key: null, direction: 'asc' };
+        let currentPackageFilter = 'all';
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeDashboard();
+        });
+
+        async function initializeDashboard() {
+            try {
+                // Check authentication
+                const token = localStorage.getItem('authToken');
+                if (!token) {
+                    window.location.href = '/login?redirect=admin-dashboard';
+                    return;
+                }
+
+                // Verify admin access before loading any data
+                const isAdmin = await verifyAdminAccess();
+                if (!isAdmin) {
+                    // Redirect non-admin users to home page immediately without showing anything
+                    window.location.href = '/';
+                    return;
+                }
+                
+                // Show container for admin users
+                document.querySelector('.container').classList.add('admin-verified');
+                
+                // Hide loading message and show dashboard content
+                document.getElementById('loadingMessage').style.display = 'none';
+                document.getElementById('dashboardContent').style.display = 'block';
+                
+                // Load dashboard data
+                await loadDashboardData();
+
+                // Load recent activity
+                await loadRecentActivity();
+                
+                // Load user activity
+                await loadUserActivity();
+
+                // Load tester users (filtered by tester_job_titles.created_at)
+                await loadTesterUsers();
+
+                // Load guest sessions
+                await loadGuestSessions();
+                
+            } catch (error) {
+                showError('Failed to initialize dashboard: ' + error.message);
+            }
+        }
+
+        async function applyDateFilter() {
+            currentDateFilter = document.getElementById('date-filter').value;
+            
+            try {
+                // Reload all data with new filter
+                await loadDashboardData();
+                await loadUserActivity();
+                await loadTesterUsers();
+                await loadGuestSessions();
+                // Keep recent activity unchanged as requested
+            } catch (error) {
+                showError('Failed to apply date filter: ' + error.message);
+            }
+        }
+
+        function applyPackageFilter() {
+            const filterSelect = document.getElementById('package-filter');
+            currentPackageFilter = filterSelect ? filterSelect.value : 'all';
+            displayUserActivity(userActivityData);
+        }
+
+        async function verifyAdminAccess() {
+            try {
+                const token = localStorage.getItem('authToken');
+                const response = await fetch('/api/admin/info', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                // If the API call succeeds, user is admin
+                if (response.ok) {
+                    return true;
+                }
+
+                // If 403, user is not admin - redirect silently
+                if (response.status === 403) {
+                    return false;
+                }
+
+                // Other errors (500, network issues) - also redirect
+                return false;
+            } catch (error) {
+                console.error('Admin verification failed:', error);
+                // On any error, assume not admin and redirect
+                return false;
+            }
+        }
+
+        async function loadDashboardData() {
+            try {
+                const response = await fetch(`/api/admin/metrics?dateFilter=${currentDateFilter}`, {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to load dashboard data');
+                }
+
+                const data = await response.json();
+                updateMetrics(data);
+
+            } catch (error) {
+                console.error('Error loading dashboard data:', error);
+                showError('Failed to load dashboard metrics');
+            }
+        }
+
+        function updateMetrics(data) {
+            // Update metric values
+            document.getElementById('total-users').textContent = data.totalUsers || 0;
+            document.getElementById('verified-users').textContent = data.verifiedUsers || 0;
+            document.getElementById('unverified-users').textContent = data.unverifiedUsers || 0;
+            document.getElementById('practice-sessions').textContent = data.practiceSessions || 0;
+            document.getElementById('active-subscriptions').textContent = data.activeSubscriptions || 0;
+            document.getElementById('free-trial-users').textContent = data.freeTrialUsers || 0;
+            document.getElementById('conversion-rate').textContent = parseFloat(data.conversionRate || 0).toFixed(1) + '%';
+            
+            // Auth methods breakdown
+            document.getElementById('total-auth-users').textContent = data.totalUsers || 0;
+            document.getElementById('google-users').textContent = data.googleUsers || 0;
+            document.getElementById('email-users').textContent = data.emailUsers || 0;
+            
+            // Test users
+            document.getElementById('test-users').textContent = data.testUsers || 0;
+            
+            // Incomplete payments
+            document.getElementById('incomplete-payments').textContent = data.incompletePayments || 0;
+
+            // Guest sessions
+            document.getElementById('guest-sessions').textContent = data.guestSessions || 0;
+
+            // New metrics
+            document.getElementById('questions-used').textContent = data.questionsUsed || 0;
+            document.getElementById('cancelled-subscriptions').textContent = data.cancelledSubscriptions || 0;
+            const revenue = Number(data.totalRevenue) || 0;
+            document.getElementById('total-revenue').textContent = '£' + revenue.toFixed(2);
+
+            // Update change indicators (simplified for now)
+            document.getElementById('test-users-change').textContent = 'Users who used test mode';
+            document.getElementById('incomplete-payments-change').textContent = 'Started payment but didn\'t complete';
+            document.getElementById('sessions-change').textContent = 'Total practice sessions';
+            document.getElementById('subscriptions-change').textContent = 'Active paying users';
+            document.getElementById('guest-sessions-change').textContent = 'Tried without signing up';
+            document.getElementById('conversion-change').textContent = 'Signup to purchase rate';
+            document.getElementById('questions-per-user').textContent = 'Avg: ' + (data.avgQuestionsPerUser || 0) + ' per user';
+            document.getElementById('revenue-change').textContent = 'Total period revenue';
+        }
+
+
+        async function loadRecentActivity() {
+            try {
+                const response = await fetch('/api/admin/activity', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to load activity data');
+                }
+
+                const activities = await response.json();
+                displayRecentActivity(activities);
+
+            } catch (error) {
+                console.error('Error loading recent activity:', error);
+                document.getElementById('recent-activities').innerHTML = 
+                    '<div class="error">Failed to load recent activity</div>';
+            }
+        }
+
+        function displayRecentActivity(activities) {
+            const container = document.getElementById('recent-activities');
+            
+            if (!activities || activities.length === 0) {
+                container.innerHTML = '<div class="loading">No recent activity</div>';
+                return;
+            }
+
+            const activityHTML = activities.map(activity => `
+                <div class="activity-item">
+                    <div class="activity-text">${activity.description}</div>
+                    <div class="activity-time">${formatRelativeTime(activity.timestamp)}</div>
+                </div>
+            `).join('');
+
+            container.innerHTML = activityHTML;
+        }
+
+        function formatRelativeTime(timestamp) {
+            const now = new Date();
+            const time = new Date(timestamp);
+            const diff = now - time;
+            
+            const minutes = Math.floor(diff / 60000);
+            const hours = Math.floor(diff / 3600000);
+            const days = Math.floor(diff / 86400000);
+            
+            if (minutes < 60) return `${minutes}m ago`;
+            if (hours < 24) return `${hours}h ago`;
+            return `${days}d ago`;
+        }
+
+        async function refreshDashboard() {
+            const refreshBtn = document.querySelector('.refresh-btn');
+            refreshBtn.textContent = '⏳ Refreshing...';
+            refreshBtn.disabled = true;
+
+            try {
+                await loadDashboardData();
+                await loadRecentActivity();
+                await loadUserActivity();
+                await loadTesterUsers();
+                await loadGuestSessions();
+
+                hideError();
+            } catch (error) {
+                showError('Failed to refresh dashboard');
+            } finally {
+                refreshBtn.textContent = '🔄 Refresh';
+                refreshBtn.disabled = false;
+            }
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('error-message');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+        }
+
+        function hideError() {
+            document.getElementById('error-message').style.display = 'none';
+        }
+
+        async function loadUserActivity() {
+            try {
+            const response = await fetch(`/api/admin/user-activity?dateFilter=${currentDateFilter}&limit=all`, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+                }
+            });
+
+                if (!response.ok) {
+                    throw new Error('Failed to load user activity');
+                }
+
+                const users = await response.json();
+                userActivityData = Array.isArray(users) ? users : [];
+                displayUserActivity(userActivityData);
+
+            } catch (error) {
+                console.error('Error loading user activity:', error);
+                document.getElementById('user-activity').innerHTML = `<div class="error">Failed to load user activity: ${error.message}</div>`;
+            }
+        }
+
+        async function loadTesterUsers() {
+            try {
+                const response = await fetch(`/api/admin/tester-users?dateFilter=${currentDateFilter}`, {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to load tester users');
+                }
+
+                const users = await response.json();
+                displayTesterUsers(Array.isArray(users) ? users : []);
+            } catch (error) {
+                console.error('Error loading tester users:', error);
+                const container = document.getElementById('tester-user-list');
+                if (container) {
+                    container.innerHTML = '<div class="error">Failed to load tester sessions</div>';
+                }
+            }
+        }
+
+        async function loadGuestSessions() {
+            const container = document.getElementById('guest-session-list');
+            if (!container) return;
+            try {
+                const response = await fetch(`/api/admin/guest-sessions?dateFilter=${currentDateFilter}`, {
+                    headers: { 'Authorization': `Bearer ${localStorage.getItem('authToken')}` }
+                });
+                if (!response.ok) throw new Error('Failed to load guest sessions');
+                const sessions = await response.json();
+
+                if (!sessions || sessions.length === 0) {
+                    container.innerHTML = '<div class="no-data">No guest sessions for the selected date range.</div>';
+                    return;
+                }
+
+                container.innerHTML = `
+                    <table class="activity-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Guest ID</th>
+                                <th>Date &amp; Time</th>
+                                <th>Job Title</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${sessions.map((s, i) => {
+                                const firstDetail = s.details && s.details[0];
+                                const hasDetails = s.details && s.details.length > 0;
+                                const rowId = `guest-detail-${i}`;
+                                return `
+                                <tr style="cursor:${hasDetails ? 'pointer' : 'default'}" onclick="${hasDetails ? `toggleGuestDetail('${rowId}')` : ''}">
+                                    <td>${i + 1}</td>
+                                    <td><code style="font-size:0.8rem;color:#6b7280">${s.guest_id.slice(0, 8)}…${s.guest_id.slice(-4)}</code></td>
+                                    <td>${formatDateTime(s.created_at, window.innerWidth < 600)}</td>
+                                    <td>${firstDetail ? firstDetail.job_title || '—' : '—'}</td>
+                                    <td>${hasDetails ? '<span style="color:#6366f1;font-size:0.85rem;font-weight:600">▶ Show</span>' : '<span style="color:#9ca3af;font-size:0.85rem">No data</span>'}</td>
+                                </tr>
+                                ${hasDetails ? `
+                                <tr id="${rowId}" style="display:none;background:#f9fafb">
+                                    <td colspan="5" style="padding:16px 20px">
+                                        ${s.details.map(d => `
+                                            <div style="background:white;border:1px solid #e5e7eb;border-radius:10px;padding:16px;margin-bottom:10px;font-size:0.88rem;max-width:100%;box-sizing:border-box;overflow-wrap:break-word;word-break:break-word">
+                                                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:${d.question_text ? '12px' : '0'}">
+                                                    <div><span style="color:#6b7280;font-size:0.78rem;text-transform:uppercase;letter-spacing:.04em">Job Title</span><br><strong>${d.job_title || '—'}</strong></div>
+                                                    <div><span style="color:#6b7280;font-size:0.78rem;text-transform:uppercase;letter-spacing:.04em">Question Type</span><br><strong>${d.question_type || '—'}</strong></div>
+                                                    <div><span style="color:#6b7280;font-size:0.78rem;text-transform:uppercase;letter-spacing:.04em">Difficulty</span><br><strong>${d.difficulty_level || '—'}</strong></div>
+                                                    <div><span style="color:#6b7280;font-size:0.78rem;text-transform:uppercase;letter-spacing:.04em">Language</span><br><strong>${d.language || '—'}</strong></div>
+                                                </div>
+                                                ${d.question_text ? `<div style="margin-top:10px;padding-top:10px;border-top:1px solid #f0f0f0"><span style="color:#6b7280;font-size:0.78rem;text-transform:uppercase;letter-spacing:.04em">Question Asked</span><p style="margin:4px 0 0;color:#111827;line-height:1.5">${d.question_text}</p></div>` : ''}
+                                                ${d.answer_text ? `<div style="margin-top:10px;padding-top:10px;border-top:1px solid #f0f0f0"><span style="color:#6b7280;font-size:0.78rem;text-transform:uppercase;letter-spacing:.04em">Their Answer</span><p style="margin:4px 0 0;color:#374151;line-height:1.5;font-style:italic">${d.answer_text}</p></div>` : ''}
+                                            </div>
+                                        `).join('')}
+                                    </td>
+                                </tr>` : ''}
+                                `;
+                            }).join('')}
+                        </tbody>
+                    </table>
+                `;
+                // Inject toggle helper if not already present
+                if (!window.toggleGuestDetail) {
+                    window.toggleGuestDetail = function(id) {
+                        const row = document.getElementById(id);
+                        if (!row) return;
+                        const isHidden = row.style.display === 'none';
+                        row.style.display = isHidden ? 'table-row' : 'none';
+                        const btn = row.previousElementSibling.querySelector('span');
+                        if (btn) btn.textContent = isHidden ? '▼ Hide' : '▶ Show';
+                    };
+                }
+            } catch (error) {
+                console.error('Error loading guest sessions:', error);
+                container.innerHTML = '<div class="error">Failed to load guest sessions</div>';
+            }
+        }
+
+        function displayUserActivity(users) {
+            if (!users || users.length === 0) {
+                document.getElementById('user-activity').innerHTML = '<div class="no-data">No user activity found for the selected date range.</div>';
+                return;
+            }
+
+            const filteredUsers = filterUsersByPackage(users);
+            const sortedUsers = getSortedUserActivity(filteredUsers);
+
+            const tableHTML = `
+                <table class="activity-table">
+                    <thead>
+                        <tr>
+                            <th class="sortable" data-sort="name">User</th>
+                            <th class="sortable" data-sort="signup_date">Signup Date</th>
+                            <th class="sortable" data-sort="job_title">Job Title</th>
+                            <th class="sortable" data-sort="auth_provider">Auth Method</th>
+                            <th class="sortable" data-sort="is_verified">Status</th>
+                            <th class="sortable" data-sort="practice_sessions">Practice Sessions</th>
+                            <th class="sortable" data-sort="last_session_date">Last Session</th>
+                            <th class="sortable" data-sort="total_spent">Total Spent</th>
+                            <th class="sortable" data-sort="incomplete_payment">Incomplete Payment</th>
+                            <th class="sortable" data-sort="packages_purchased">Packages</th>
+                            <th class="sortable" data-sort="current_package">Current Package</th>
+                            <th class="sortable" data-sort="questions_used">Questions Used</th>
+                            <th class="sortable" data-sort="questions_remaining">Questions Remaining</th>
+                            <th>Tester</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${sortedUsers.map(user => `
+                            <tr>
+                                <td>
+                                    <strong>${user.name || 'N/A'}</strong><br>
+                                    <small>${user.email}</small>
+                                </td>
+                                <td>${formatDateTime(user.signup_date)}</td>
+                                <td>${user.job_title || 'N/A'}</td>
+                                <td>
+                                    <span class="status-badge ${user.auth_provider === 'google' ? 'status-google' : 'status-traditional'}">
+                                        ${user.auth_provider === 'google' ? 'Google' : 'Email/Pass'}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="status-badge status-verified">
+                                        ${user.is_verified ? 'Verified' : 'Unverified'}
+                                    </span>
+                                </td>
+                                <td>${user.practice_sessions || 0}</td>
+                                <td>${user.last_session_date ? formatDate(user.last_session_date) : 'Never'}</td>
+                                <td>£${user.total_spent || '0.00'}</td>
+                                <td>
+                                    <span class="status-badge ${user.has_incomplete_payment ? 'status-warning' : 'status-neutral'}">
+                                        ${user.has_incomplete_payment ? 'Started' : 'No'}
+                                    </span>
+                                </td>
+                                <td>${user.packages_purchased || 'None'}</td>
+                                <td>
+                                    ${user.current_package ? `
+                                        <span class="status-badge status-active">${user.current_package}</span>
+                                    ` : 'Free User'}
+                                </td>
+                                <td>
+                                    ${user.subscription_status === 'active' ? (user.questions_used || 0) : 'N/A'}
+                                </td>
+                                <td>
+                                    ${user.subscription_status === 'active' ? (user.questions_remaining || 0) : 'N/A'}
+                                </td>
+                                <td>
+                                    ${renderTesterToggle(user)}
+                                </td>
+                            </tr>
+                            <tr class="tester-row" data-user-id="${user.id}">
+                                <td class="tester-cell" colspan="14">
+                                    ${renderTesterSessions(user)}
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+
+            document.getElementById('user-activity').innerHTML = tableHTML;
+            applyUserActivityScroll(sortedUsers);
+            attachUserActivitySortHandlers();
+            attachTesterToggleHandlers();
+        }
+
+        function displayTesterUsers(users) {
+            const container = document.getElementById('tester-user-list');
+            if (!container) return;
+
+            const testers = Array.isArray(users)
+                ? users.filter(user => Array.isArray(user.testerSessions) && user.testerSessions.length > 0)
+                : [];
+
+            if (testers.length === 0) {
+                container.innerHTML = '<div class="loading">No tester activity for the selected date range.</div>';
+                return;
+            }
+
+            const sortedUsers = [...testers].sort((a, b) => {
+                const aCount = Array.isArray(a.testerSessions) ? a.testerSessions.length : 0;
+                const bCount = Array.isArray(b.testerSessions) ? b.testerSessions.length : 0;
+                if (bCount !== aCount) return bCount - aCount;
+                return String(a.name || '').localeCompare(String(b.name || ''));
+            });
+
+            container.innerHTML = sortedUsers.map(user => {
+                const count = Array.isArray(user.testerSessions) ? user.testerSessions.length : 0;
+                const label = count === 1 ? 'test' : 'tests';
+                const name = escapeHtml(user.name || 'N/A');
+                const email = escapeHtml(user.email || 'Unknown email');
+                return `
+                    <details class="tester-details" data-user-id="${user.id}">
+                        <summary>${name} • ${email} • ${count} ${label}</summary>
+                        ${renderTesterSessions(user)}
+                    </details>
+                `;
+            }).join('');
+        }
+
+        function filterUsersByPackage(users) {
+            if (!Array.isArray(users)) return [];
+            if (currentPackageFilter !== 'with_packages') {
+                return users;
+            }
+            return users.filter((user) => {
+                const totalSpent = Number(user.total_spent || 0);
+                const hasPackagesPurchased = user.packages_purchased && user.packages_purchased !== 'None';
+                const hasCurrentPackage = user.current_package && user.current_package.trim() !== '';
+                return hasCurrentPackage || hasPackagesPurchased || totalSpent > 0;
+            });
+        }
+
+        function applyUserActivityScroll(users) {
+            const container = document.getElementById('user-activity');
+            if (!container) return;
+
+            if (!users || users.length <= 30) {
+                container.style.maxHeight = '';
+                container.style.overflowY = 'visible';
+                return;
+            }
+
+            const table = container.querySelector('table');
+            if (!table) return;
+
+            const bodyRow = table.querySelector('tbody tr');
+            const headerRow = table.querySelector('thead tr');
+            const rowHeight = bodyRow ? bodyRow.getBoundingClientRect().height : 44;
+            const headerHeight = headerRow ? headerRow.getBoundingClientRect().height : 40;
+            const maxHeight = Math.round(headerHeight + rowHeight * 30);
+
+            container.style.maxHeight = `${maxHeight}px`;
+            container.style.overflowY = 'auto';
+        }
+
+        function renderTesterToggle(user) {
+            const count = Array.isArray(user.testerSessions) ? user.testerSessions.length : 0;
+            return `<button class="tester-toggle-btn" data-user-id="${user.id}" aria-expanded="false">
+                View tests (${count})
+            </button>`;
+        }
+
+        function renderTesterSessions(user) {
+            if (!user.testerSessions || user.testerSessions.length === 0) {
+                return '<div class="tester-details-content">No tester activity for this user.</div>';
+            }
+
+            const sessionsHtml = user.testerSessions.map(session => {
+                const settings = [
+                    session.question_type ? `Type: ${session.question_type}` : null,
+                    session.difficulty_level ? `Difficulty: ${session.difficulty_level}` : null,
+                    session.language ? `Lang: ${session.language}` : null,
+                    session.has_additional_info ? `Extra info (${session.additional_info_length || 0})` : null
+                ].filter(Boolean);
+
+                const settingsHtml = settings.length
+                    ? `<div class="tester-details-label">Settings</div>
+                       <div class="tester-details-text">${escapeHtml(settings.join(' • '))}</div>`
+                    : '';
+
+                return `
+                    <div class="tester-details-item">
+                        <div><strong>${escapeHtml(session.job_title || 'Job Title')}</strong> • ${formatDateTime(session.created_at)}</div>
+                        ${settingsHtml}
+                        <div class="tester-details-label" style="margin-top: 0.5rem;">Question</div>
+                        <div class="tester-details-text">${escapeHtml(session.question_text || 'Not recorded')}</div>
+                        <div class="tester-details-label" style="margin-top: 0.5rem;">Answer</div>
+                        <div class="tester-details-text">${escapeHtml(session.answer_text || 'Not recorded')}</div>
+                    </div>
+                `;
+            }).join('');
+
+            return `<div class="tester-details-content">${sessionsHtml}</div>`;
+        }
+
+        function attachTesterToggleHandlers() {
+            const buttons = document.querySelectorAll('.tester-toggle-btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const userId = button.getAttribute('data-user-id');
+                    const row = document.querySelector(`.tester-row[data-user-id="${userId}"]`);
+                    if (!row) return;
+
+                    const isOpen = row.classList.toggle('open');
+                    button.classList.toggle('active', isOpen);
+                    button.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                    button.textContent = isOpen ? 'Hide tests' : `View tests (${row.querySelectorAll('.tester-details-item').length})`;
+                });
+            });
+        }
+
+        function escapeHtml(value) {
+            return String(value || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function attachUserActivitySortHandlers() {
+            const headers = document.querySelectorAll('.activity-table th.sortable');
+            headers.forEach(header => {
+                const sortKey = header.dataset.sort;
+                header.classList.remove('sort-asc', 'sort-desc');
+                if (currentUserActivitySort.key === sortKey) {
+                    header.classList.add(currentUserActivitySort.direction === 'asc' ? 'sort-asc' : 'sort-desc');
+                }
+
+                header.onclick = () => {
+                    const defaultDirection = getDefaultSortDirection(sortKey);
+                    if (currentUserActivitySort.key === sortKey) {
+                        currentUserActivitySort.direction = currentUserActivitySort.direction === 'asc' ? 'desc' : 'asc';
+                    } else {
+                        currentUserActivitySort.key = sortKey;
+                        currentUserActivitySort.direction = defaultDirection;
+                    }
+                    displayUserActivity(userActivityData);
+                };
+            });
+        }
+
+        function getSortedUserActivity(users) {
+            if (!currentUserActivitySort.key) {
+                return users;
+            }
+
+            const sorted = [...users].sort((a, b) => {
+                const valueA = getUserActivitySortValue(a, currentUserActivitySort.key);
+                const valueB = getUserActivitySortValue(b, currentUserActivitySort.key);
+
+                if (valueA === valueB) return 0;
+                if (valueA === null || valueA === undefined) return 1;
+                if (valueB === null || valueB === undefined) return -1;
+
+                if (typeof valueA === 'number' && typeof valueB === 'number') {
+                    return valueA - valueB;
+                }
+
+                return String(valueA).localeCompare(String(valueB));
+            });
+
+            if (currentUserActivitySort.direction === 'desc') {
+                sorted.reverse();
+            }
+
+            return sorted;
+        }
+
+        function getUserActivitySortValue(user, key) {
+            switch (key) {
+                case 'name':
+                    return (user.name || user.email || '').toLowerCase();
+                case 'signup_date':
+                    return user.signup_date ? new Date(user.signup_date).getTime() : 0;
+                case 'job_title':
+                    return (user.job_title || '').toLowerCase();
+                case 'auth_provider':
+                    return (user.auth_provider || '').toLowerCase();
+                case 'is_verified':
+                    return user.is_verified ? 1 : 0;
+                case 'practice_sessions':
+                    return Number(user.practice_sessions || 0);
+                case 'last_session_date':
+                    return user.last_session_date ? new Date(user.last_session_date).getTime() : 0;
+                case 'total_spent':
+                    return Number(user.total_spent || 0);
+                case 'incomplete_payment':
+                    return user.has_incomplete_payment ? 1 : 0;
+                case 'packages_purchased':
+                    return (user.packages_purchased || '').toLowerCase();
+                case 'current_package':
+                    return (user.current_package || 'free user').toLowerCase();
+                case 'questions_used':
+                    return Number(user.questions_used || 0);
+                case 'questions_remaining':
+                    return Number(user.questions_remaining || 0);
+                default:
+                    return '';
+            }
+        }
+
+        function getDefaultSortDirection(key) {
+            const descKeys = new Set([
+                'signup_date',
+                'last_session_date',
+                'practice_sessions',
+                'total_spent',
+                'incomplete_payment',
+                'questions_used',
+                'questions_remaining'
+            ]);
+            return descKeys.has(key) ? 'desc' : 'asc';
+        }
+
+        function formatDate(dateString) {
+            if (!dateString) return 'N/A';
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+        }
+
+        function formatDateTime(dateString, compact = false) {
+            if (!dateString) return 'N/A';
+            const date = new Date(dateString);
+            if (compact) {
+                return date.toLocaleString('en-GB', {
+                    day: 'numeric',
+                    month: 'short',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+            }
+            return date.toLocaleString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: '2-digit'
+            });
+        }
+
+        function updateChartTitle() {
+            const titleMap = {
+                'today': 'Today',
+                'yesterday': 'Yesterday', 
+                'last_7_days': 'Last 7 Days',
+                'last_30_days': 'Last 30 Days',
+                'last_90_days': 'Last 90 Days',
+                'last_year': 'Last Year',
+                'all_time': 'All Time'
+            };
+            
+            const period = titleMap[currentDateFilter] || 'Last 30 Days';
+            document.getElementById('user-growth-title').textContent = `📊 User Growth (${period})`;
+        }
+    </script>
+</body>
+</html>

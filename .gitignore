@@ -1,0 +1,82 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Temporary files
+temp/
+tmp/
+.tmp/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build output
+dist/
+build/
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Audio files (temporary)
+*.webm
+*.wav
+*.mp3
+*.ogg
+
+# Klaviyo email templates (keep local)
+klaviyo/
+stripe-sample-code/
+
+.browser-opened
+
+# Markdown files
+*.md
+
+# Business/Marketing files
+unique-selling-points.txt
+
+*.txt
+
+# Ad exports
+public/assets/ads/exports/
+public/assets/ads/*.svg
+
+# Database backups
+backups/
+
+# Promo video assets
+promo-video/
+public/assets/videos/
+
+# AI Claude skills
+.agents
+.claude
+skills
+skills-lock.json
+
+client_secret.json

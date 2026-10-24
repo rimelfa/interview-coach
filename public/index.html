@@ -1,0 +1,3105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Mock Interview Practice | Instant Feedback on Every Answer</title>
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TSMVFCHQ');</script>
+    <!-- End Google Tag Manager -->
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MLG7X3D9R2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-MLG7X3D9R2');
+      gtag('config', 'AW-958968799');
+    </script>
+
+    <!-- Reddit Pixel -->
+    <script>
+    !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);
+
+    // Initialize Reddit Pixel with advanced matching when user data is available
+    function initRedditPixel() {
+        const user = localStorage.getItem('user');
+        if (user) {
+            try {
+                const userData = JSON.parse(user);
+                rdt('init', 'a2_hny2jcjsxq16', {
+                    email: userData.email || '',
+                    externalId: userData.id ? userData.id.toString() : ''
+                });
+            } catch (e) {
+                // Fallback to basic init if user data parsing fails
+                rdt('init', 'a2_hny2jcjsxq16');
+            }
+        } else {
+            // Basic init for non-logged-in users
+            rdt('init', 'a2_hny2jcjsxq16');
+        }
+        rdt('track', 'PageVisit');
+    }
+
+    // Initialize on page load
+    initRedditPixel();
+
+    // Re-initialize when user logs in (will be called from auth handlers)
+    window.updateRedditPixelUser = function(userData) {
+        if (userData && userData.email) {
+            rdt('init', 'a2_hny2jcjsxq16', {
+                email: userData.email,
+                externalId: userData.id ? userData.id.toString() : ''
+            });
+        }
+    };
+    </script>
+    <!-- End Reddit Pixel -->
+    
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="AI Mock Interview Practice | Instant Feedback on Every Answer">
+    <meta name="description" content="Practise real interview questions with AI feedback tailored to your CV and job description. Voice or text answers, instant coaching on pace, clarity and confidence. No subscription.">
+    <meta name="keywords" content="interview practice, mock interview, AI interview coach, job interview preparation, interview simulator, interview questions, behavioral interview questions, technical interview practice, interview coaching, job preparation, interview skills, career coaching, interview training, practice interviews online, virtual interview practice">
+    <meta name="author" content="Good Chat">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://thegoodchatapp.com/">
+    <meta property="og:title" content="Good Chat - AI Mock Interview Practice Platform">
+    <meta property="og:description" content="Practice real interview questions with AI feedback. 500+ questions from Google, Amazon, Meta. Instant feedback on communication, pace, and confidence.">
+    <meta property="og:image" content="https://thegoodchatapp.com/assets/og-image.png">
+    <meta property="og:site_name" content="Good Chat">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://thegoodchatapp.com/">
+    <meta property="twitter:title" content="Good Chat - AI Mock Interview Practice Platform">
+    <meta property="twitter:description" content="Practice real interview questions with AI feedback. 500+ questions from Google, Amazon, Meta. Instant feedback on communication, pace, and confidence.">
+    <meta property="twitter:image" content="https://thegoodchatapp.com/assets/twitter-image.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://thegoodchatapp.com/">
+    
+    <!-- Favicon - Comprehensive for Google Search -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
+    <meta name="msapplication-TileImage" content="/favicon.png">
+    <meta name="msapplication-TileColor" content="#10b981">
+    <meta name="theme-color" content="#10b981">
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
+    <style>
+        /* Ultra-Modern Design Variables */
+        :root {
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --primary-light: #34d399;
+            --accent: #f59e0b;
+            --accent-light: #fbbf24;
+            --accent-pink: #ec4899;
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --background: #0d1f1a;
+            --surface: #1e3a2f;
+            --surface-light: #2d4a3e;
+            --glass: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --glass-strong: rgba(255, 255, 255, 0.15);
+            --shadow: rgba(0, 0, 0, 0.4);
+            --shadow-strong: rgba(0, 0, 0, 0.6);
+            --glow: rgba(16, 185, 129, 0.4);
+            --glow-pink: rgba(236, 72, 153, 0.3);
+        }
+
+        html, body {
+            background: var(--background);
+            color: white;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            overflow-x: hidden;
+            /* Aggressive zoom prevention */
+            touch-action: manipulation;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            -moz-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Prevent zoom on input focus for mobile */
+        input, select, textarea, button {
+            touch-action: manipulation;
+            font-size: 16px; /* Prevents zoom on iOS */
+        }
+        
+        @media screen and (max-width: 768px) {
+            input, select, textarea {
+                font-size: 16px !important; /* Force 16px to prevent zoom */
+            }
+        }
+
+        /* Additional anti-zoom CSS */
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            -webkit-user-zoom: fixed;
+            -moz-user-zoom: fixed;
+        }
+
+        /* Custom Google Sign-in Button Styles */
+        .google-signin-container,
+        #googleSignInButton {
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            width: 100% !important;
+            margin: 20px auto !important;
+        }
+        
+        .google-btn {
+            position: relative;
+            width: 100%;
+            max-width: 320px;
+            height: 44px;
+            margin: 0 auto;
+            background: #fff;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            color: #3c4043;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .google-btn:hover {
+            background: #f8f9fa;
+            border-color: #d2d2d2;
+        }
+        
+        .google-btn svg {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .google-btn span {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            white-space: nowrap;
+        }
+        
+        
+
+        /* Hero Section with Clean Gradients */
+        .hero-section {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(245, 158, 11, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, #0d1f1a 0%, #1e3a2f 100%);
+            position: relative;
+            overflow: hidden;
+            padding-bottom: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+        }
+
+        /* Navigation styling for different contexts */
+        body.spa-page .container {
+            position: static;
+            transform: none;
+        }
+
+        body:not(.spa-page) .container {
+            position: absolute;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+            width: 100%;
+        }
+
+        /* Simple Floating Elements */
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(1px);
+            animation: modernFloat 20s infinite ease-in-out;
+        }
+
+        .float-1 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            top: -10%;
+            left: -10%;
+            animation-delay: 0s;
+            opacity: 0.4;
+        }
+
+        .float-2 {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+            bottom: -5%;
+            right: -5%;
+            animation-delay: 7s;
+            opacity: 0.3;
+        }
+
+        .float-3 {
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            top: 50%;
+            right: 10%;
+            animation-delay: 14s;
+            opacity: 0.2;
+        }
+
+        .float-4 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--accent) 0%, transparent 80%);
+            bottom: 20%;
+            left: -20%;
+            animation-delay: 3s;
+            opacity: 0.15;
+        }
+
+        @keyframes modernFloat {
+            0%, 100% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+            }
+            33% {
+                transform: translate(30px, -20px) scale(1.1) rotate(120deg);
+            }
+            66% {
+                transform: translate(-20px, 30px) scale(0.9) rotate(240deg);
+            }
+        }
+
+        /* Clean Hero Content */
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            padding: 50px 60px;
+            max-width: 1000px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 32px;
+            box-shadow: 
+                0 25px 50px var(--shadow),
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+            margin-top: 120px;
+            margin-bottom: 80px;
+        }
+
+        .hero-title {
+            font-size: 3.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 14px;
+            line-height: 1.1;
+            animation: fadeInUp 1s ease-out;
+            letter-spacing: -0.03em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.05rem;
+            color: #94a3b8;
+            margin-bottom: 24px;
+            line-height: 1.6;
+            font-weight: 400;
+            animation: fadeInUp 1s ease-out 0.2s;
+            animation-fill-mode: both;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.4s;
+            animation-fill-mode: both;
+        }
+
+        .hero-btn {
+            padding: 20px 52px;
+            font-size: 1.15rem;
+            border-radius: 16px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            box-shadow:
+                0 12px 36px rgba(16, 185, 129, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+        }
+
+        .hero-btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 15px 40px rgba(16, 185, 129, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+        }
+
+        .hero-btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .hero-btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .hero-btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .hero-btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .hero-btn-secondary {
+            background: rgba(16, 185, 129, 0.15) !important;
+            color: white !important;
+            border: 1px solid rgba(16, 185, 129, 0.3) !important;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-btn-secondary:hover {
+            background: rgba(16, 185, 129, 0.25) !important;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3) !important;
+        }
+
+        /* Subscription info on home page */
+        .subscription-info-home {
+            margin: 30px 0;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(52, 211, 153, 0.1) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .subscription-header-home {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .subscription-header-home h3 {
+            margin: 0;
+            color: #ffffff;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .subscription-status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .subscription-status-badge.active {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(72, 187, 120, 0.3);
+        }
+
+        .subscription-status-badge.inactive {
+            background: linear-gradient(135deg, #fc8181 0%, #f56565 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(252, 129, 129, 0.3);
+        }
+
+        .subscription-details-home {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .subscription-stat-home {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        .subscription-stat-home .label {
+            color: #cbd5e1;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .subscription-stat-home .value {
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .subscription-stat-home .value.questions-remaining {
+            color: #fbbf24;
+            font-weight: 700;
+        }
+
+        .subscription-actions-home {
+            text-align: center;
+        }
+
+        .subscription-btn-home {
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .subscription-btn-home:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .subscription-btn-home.primary {
+            background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%);
+            border: none;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .subscription-btn-home.primary:hover {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Warning styles */
+        .subscription-warning {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 15px 0;
+            padding: 15px;
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.2) 0%, rgba(245, 158, 11, 0.2) 100%);
+            border: 1px solid rgba(251, 191, 36, 0.4);
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        .warning-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .warning-text {
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .value.warning {
+            color: #fbbf24 !important;
+            font-weight: 700 !important;
+            text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+        }
+
+        /* Legacy styles for backward compatibility */
+        .subscription-badge-home {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-size: 1rem;
+            color: #e2e8f0;
+        }
+
+        .subscription-badge-home span:first-child {
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .questions-count {
+            padding: 6px 12px;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(251, 191, 36, 0.2) 100%);
+            border: 1px solid rgba(245, 158, 11, 0.4);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #fbbf24;
+        }
+
+        /* Authenticated user content styles */
+        .authenticated-user-content {
+            min-height: 100vh;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(16, 185, 129, 0.15) 0%, transparent 50%), 
+                radial-gradient(circle at 80% 80%, rgba(245, 158, 11, 0.15) 0%, transparent 50%),
+                linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            padding: 120px 20px 60px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            position: relative;
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 40px;
+            max-width: 800px;
+        }
+
+        .auth-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            line-height: 1.1;
+        }
+
+        .auth-header p {
+            font-size: 1.2rem;
+            color: #cbd5e1;
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        .auth-subscription-placeholder {
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        .loading-subscription {
+            text-align: center;
+            padding: 40px;
+            color: #cbd5e1;
+            font-size: 1.1rem;
+        }
+
+        .auth-actions {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .auth-btn {
+            padding: 16px 32px;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .auth-btn-primary {
+            background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%);
+            color: white;
+            box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+        }
+
+        .auth-btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(102, 126, 234, 0.4);
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+        }
+
+        .auth-btn-secondary {
+            background: rgba(255, 255, 255, 0.08);
+            color: #e2e8f0;
+            backdrop-filter: blur(10px);
+        }
+
+        .auth-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .auth-btn-tertiary {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            border: 1px solid rgba(72, 187, 120, 0.3);
+        }
+
+        .auth-btn-tertiary:hover {
+            background: linear-gradient(135deg, #38a169 0%, #2f855a 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(72, 187, 120, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .authenticated-user-content {
+                padding: 140px 15px 40px 15px;
+            }
+
+            .auth-header h1 {
+                font-size: 2.2rem;
+            }
+
+            .auth-header p {
+                font-size: 1rem;
+            }
+
+            .auth-btn {
+                padding: 14px 28px;
+                font-size: 1rem;
+            }
+        }
+        
+        /* Extra spacing for very small mobile screens */
+        @media (max-width: 480px) {
+            .authenticated-user-content {
+                padding: 160px 15px 40px 15px;
+            }
+            
+            .auth-header h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 120px 20px;
+            background: var(--surface);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 80px;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            padding: 48px;
+            border-radius: 24px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            opacity: 0;
+            transform: translateX(0);
+        }
+        
+        .feature-card:nth-child(odd) {
+            transform: translateX(-100px);
+        }
+        
+        .feature-card:nth-child(even) {
+            transform: translateX(100px);
+        }
+        
+        .feature-card.animate-in:nth-child(odd) {
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+        
+        .feature-card.animate-in:nth-child(even) {
+            animation: slideInRight 0.8s ease-out forwards;
+        }
+        
+        .feature-card.animate-in:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        @keyframes slideInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* Animations for new sections */
+        .stats-section .stat-card.animate-in,
+        .step-card.animate-in,
+        .testimonial-card.animate-in,
+        .faq-item.animate-in {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            margin-bottom: 32px;
+            transition: all 0.4s ease;
+            box-shadow: 
+                0 10px 30px rgba(16, 185, 129, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 
+                0 15px 40px rgba(16, 185, 129, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+        }
+
+        .feature-title {
+            font-size: 1.6rem;
+            color: white;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .feature-description {
+            color: #cbd5e1;
+            line-height: 1.7;
+            margin-bottom: 32px;
+            font-size: 1.05rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .feature-list li {
+            padding: 16px 0;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: color 0.3s ease;
+        }
+
+        .feature-card:hover .feature-list li {
+            color: #cbd5e1;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-list li:before {
+            content: "✦";
+            color: var(--accent);
+            font-weight: 600;
+            margin-right: 16px;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover .feature-list li:before {
+            transform: rotate(45deg);
+        }
+
+        /* Animated Background Shapes */
+        .shape-1, .shape-2 {
+            position: absolute;
+            opacity: 0.05;
+        }
+
+        .shape-1 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(45deg, #10b981, #14b8a6);
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            top: 10%;
+            right: -200px;
+            animation: rotate 30s linear infinite;
+        }
+
+        .shape-2 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #10b981, #14b8a6);
+            clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+            bottom: 10%;
+            left: -150px;
+            animation: rotate 25s linear infinite reverse;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Homepage Statistics Section */
+        .stats-section {
+            padding: 100px 20px;
+            background: var(--surface);
+            position: relative;
+        }
+
+        .stats-section .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stats-section .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .stats-section .stat-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            padding: 40px 20px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid var(--glass-border);
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .stats-section .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .stats-section .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stats-section .stat-label {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            font-weight: 500;
+        }
+
+        /* How It Works Section */
+        .how-it-works-section {
+            padding: 120px 20px;
+            background: var(--background);
+            position: relative;
+        }
+
+        .how-it-works-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 80px;
+        }
+        
+        @media (max-width: 1200px) {
+            .steps-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .steps-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        .step-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 24px;
+            text-align: center;
+            border: 1px solid var(--glass-border);
+            transition: all 0.4s ease;
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .step-icon {
+            font-size: 3rem;
+            margin: 30px 0 20px 0;
+        }
+
+        .step-title {
+            font-size: 1.4rem;
+            color: white;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .step-description {
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 120px 20px;
+            background: var(--surface);
+            position: relative;
+        }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .testimonial-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .testimonial-content {
+            margin-bottom: 30px;
+        }
+
+        .testimonial-content p {
+            color: #e2e8f0;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin: 0;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            font-size: 3rem;
+            width: 60px;
+            height: 60px;
+            background: var(--glass);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--glass-border);
+        }
+
+        .author-name {
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .author-role {
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 120px 20px;
+            background: var(--background);
+            position: relative;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-grid {
+            margin-top: 80px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .faq-item {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .faq-item:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .faq-question {
+            padding: 25px 30px;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: var(--primary);
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            font-weight: 300;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 30px 25px 30px;
+            color: #cbd5e1;
+            line-height: 1.7;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+            animation: fadeInDown 0.3s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(16, 185, 129, 0.2) 0%, transparent 50%), 
+                radial-gradient(circle at 70% 70%, rgba(245, 158, 11, 0.2) 0%, transparent 50%),
+                var(--background);
+            padding: 120px 20px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 32px;
+            padding: 80px 60px;
+            box-shadow: 
+                0 25px 50px var(--shadow),
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+        }
+
+        .cta-title {
+            font-size: 2.8rem;
+            margin-bottom: 32px;
+            font-weight: 700;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+
+        .cta-description {
+            font-size: 1.2rem;
+            margin-bottom: 48px;
+            color: #cbd5e1;
+            line-height: 1.7;
+        }
+
+        /* Video Section Responsive */
+        @media (max-width: 768px) {
+            .video-section-flex {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 30px !important;
+                align-items: stretch !important;
+            }
+            
+            /* Mobile title (hidden on desktop) */
+            .mobile-title {
+                display: block !important;
+                order: 1;
+            }
+            
+            /* Video container */
+            .video-container {
+                order: 2;
+                width: 100% !important;
+                max-width: none !important;
+            }
+            
+            /* Text content */
+            .text-content {
+                order: 3;
+                width: 100% !important;
+                max-width: none !important;
+            }
+            
+            /* Hide desktop title on mobile */
+            .desktop-title {
+                display: none !important;
+            }
+            
+            /* Center description text */
+            .text-content p {
+                text-align: center !important;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .hero-content {
+                padding: 40px 24px;
+            }
+
+            /* Flow diagram: single column, hide arrows */
+            .hero-flow {
+                flex-direction: column !important;
+                align-items: center !important;
+                gap: 12px !important;
+            }
+
+            .hero-flow-arrow {
+                display: none !important;
+            }
+
+            .hero-flow-card {
+                width: 100% !important;
+                max-width: 320px !important;
+                min-width: unset !important;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .feature-card {
+                padding: 30px;
+            }
+        }
+
+        /* Modern Particle System */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(16, 185, 129, 0.6);
+            border-radius: 50%;
+            animation: modernParticle 20s infinite linear;
+            box-shadow: 0 0 6px rgba(16, 185, 129, 0.8);
+        }
+
+        .particle:nth-child(even) {
+            background: rgba(245, 158, 11, 0.4);
+            box-shadow: 0 0 4px rgba(245, 158, 11, 0.6);
+            animation-duration: 25s;
+        }
+
+        @keyframes modernParticle {
+            0% {
+                transform: translateY(calc(100vh + 20px)) translateX(-30px) rotate(0deg);
+                opacity: 0;
+            }
+            5% {
+                opacity: 1;
+            }
+            95% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-20px) translateX(30px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Footer Styles */
+        .footer {
+            color: #ffffff;
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+
+        /* Hide footer on all SPA pages (dashboard, practice, profile, etc.) - only show on home page */
+        body.spa-page .footer {
+            display: none !important;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-brand .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-tagline {
+            color: #cbd5e1;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .footer-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(203, 213, 225, 0.2);
+        }
+
+        .footer-copyright p,
+        .footer-social p {
+            margin: 0;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .footer-social p {
+            font-weight: 500;
+        }
+
+        /* Footer Responsive */
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: 2fr 1fr 1fr;
+                gap: 40px;
+            }
+
+            .footer-section:last-child {
+                grid-column: span 2;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer {
+                padding: 40px 0 20px;
+                margin-top: 60px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                text-align: center;
+            }
+
+            .footer-section:last-child {
+                grid-column: span 1;
+                display: block;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .footer-brand .footer-logo {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-container {
+                padding: 0 15px;
+            }
+
+            .footer-content {
+                gap: 25px;
+            }
+
+            .footer-title {
+                font-size: 1rem;
+            }
+        }
+
+        /* Profile Completion Banner Styles */
+        #profile-completion-banner {
+            position: relative;
+            z-index: 100;
+            background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%);
+            color: white;
+            margin: 0 -20px 20px -20px;
+            border-radius: 0 0 16px 16px;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+            animation: slideDown 0.5s ease-out;
+        }
+
+        /* FORCE MOBILE MENU ABOVE EVERYTHING - CRITICAL FIX */
+        .nav-menu.active {
+            z-index: 999999 !important;
+            position: fixed !important;
+        }
+        
+        .nav-menu.active * {
+            z-index: 999999 !important;
+        }
+        
+        @media (max-width: 767px) {
+            .nav-menu.active {
+                z-index: 999999 !important;
+                position: fixed !important;
+                top: 0 !important;
+                right: 0 !important;
+                display: flex !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                pointer-events: auto !important;
+            }
+            
+            .nav-menu.active a,
+            .nav-menu.active .dropdown-menu a {
+                z-index: 999999 !important;
+                pointer-events: auto !important;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .banner-content {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            gap: 16px;
+            position: relative;
+        }
+
+        .banner-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .banner-text {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .banner-text strong {
+            display: block;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: white;
+        }
+
+        .banner-text p {
+            margin: 0;
+            font-size: 14px;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        .banner-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .banner-btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .banner-btn-primary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .banner-btn-primary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .banner-btn-secondary {
+            background: transparent;
+            color: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .banner-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .banner-close {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 20px;
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .banner-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        /* Responsive banner styles */
+        @media (max-width: 768px) {
+            .banner-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .banner-actions {
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+            .banner-btn {
+                flex: 1;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .banner-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .banner-btn {
+                width: 100%;
+            }
+
+            .banner-text strong {
+                font-size: 15px;
+            }
+
+            .banner-text p {
+                font-size: 13px;
+            }
+        }
+
+        /* Practice page dark mode — applied before practice.js injects its stylesheet */
+        html.practice-dark,
+        html.practice-dark body {
+            background-color: #1a3028 !important;
+            color: rgba(255,255,255,0.88) !important;
+        }
+        html.practice-dark #site-header .top-navigation {
+            background: rgba(26,48,40,0.96) !important;
+            border-color: rgba(255,255,255,0.08) !important;
+        }
+        html.practice-dark .nav-brand h2,
+        html.practice-dark .nav-brand a { color: #10b981 !important; }
+        html.practice-dark .nav-item a,
+        html.practice-dark .nav-menu a { color: rgba(255,255,255,0.65) !important; }
+    </style>
+    
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Good Chat",
+        "alternateName": "AI Mock Interview Practice Platform",
+        "description": "AI-powered mock interview practice platform with personalized questions, real-time feedback, and comprehensive interview simulation for job seekers across all industries",
+        "url": "https://thegoodchatapp.com",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Web",
+        "keywords": "interview practice, mock interview, job interview preparation, interview simulator, behavioral questions, technical interviews, career coaching",
+        "audience": {
+            "@type": "Audience",
+            "audienceType": "Job seekers, professionals, students"
+        },
+        "offers": [{
+            "@type": "Offer",
+            "name": "Starter Package",
+            "price": "6.99",
+            "priceCurrency": "GBP",
+            "description": "50 mock interview questions with AI feedback, valid for 1 month",
+            "category": "Interview Preparation"
+        }, {
+            "@type": "Offer",
+            "name": "Professional Package",
+            "price": "10.99",
+            "priceCurrency": "GBP",
+            "description": "100 mock interview questions with advanced AI coaching, valid for 1 month",
+            "category": "Interview Preparation"
+        }],
+        "provider": {
+            "@type": "Organization",
+            "name": "Good Chat",
+            "url": "https://thegoodchatapp.com",
+            "description": "Leading AI-powered interview coaching platform"
+        },
+        "featureList": [
+            "AI-powered mock interviews",
+            "Personalized behavioral questions",
+            "Technical interview practice",
+            "Real-time feedback and coaching",
+            "Industry-specific scenarios",
+            "Voice and text practice modes",
+            "Progress tracking and analytics"
+        ]
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [{
+            "@type": "Question",
+            "name": "How does Good Chat work?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Good Chat generates personalized mock interview questions based on your resume and target job. You practice with realistic interview scenarios and receive instant feedback on your responses, communication skills, and areas for improvement."
+            }
+        }, {
+            "@type": "Question",
+            "name": "What types of interview questions can I practice?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Practice behavioral interview questions, technical coding interviews, situational judgment questions, competency-based questions, and industry-specific scenarios. Our platform covers over 500 interview questions across all major job categories and industries."
+            }
+        }, {
+            "@type": "Question",
+            "name": "How much does the mock interview platform cost?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Good Chat offers two packages: Starter (£6.99 for 50 mock interview sessions) and Professional (£10.99 for 100 sessions). All packages include AI feedback, progress tracking, and unlimited practice time."
+            }
+        }, {
+            "@type": "Question",
+            "name": "Is this better than traditional interview coaching?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Good Chat is available 24/7, provides instant feedback, covers unlimited interview scenarios, and costs a fraction of traditional coaching. You can practice as many mock interviews as needed without scheduling constraints."
+            }
+        }, {
+            "@type": "Question",
+            "name": "Can I practice for specific companies or roles?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes! Our platform includes company-specific interview questions for major employers like Google, Microsoft, Amazon, and more. You can also practice role-specific scenarios for software engineering, product management, consulting, finance, and other careers."
+            }
+        }]
+    }
+    </script>
+    <script src="/assets/js/header.js"></script>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TSMVFCHQ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <!-- Page Content Container for SPA pages -->
+    <div class="container">
+        <div class="page-content" style="display: none;"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="floating-element float-1"></div>
+        <div class="floating-element float-2"></div>
+        <div class="floating-element float-3"></div>
+        <div class="floating-element float-4"></div>
+        
+        <div class="particles" id="particles"></div>
+        
+        <div class="hero-content">
+
+            <!-- What it is — one line, dead clear -->
+            <p style="font-size:0.85rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#34d399;margin-bottom:16px;">AI-powered interview practice</p>
+
+            <h1 class="hero-title">Answer questions.<br>Know exactly what to fix.</h1>
+
+            <p class="hero-subtitle">Paste your CV and job description. The AI generates questions specific to your role, listens to your answer, and tells you in seconds what worked and what didn't.</p>
+
+            <div class="hero-buttons" style="margin-bottom:10px;">
+                <a href="/practice" class="hero-btn hero-btn-primary">
+                    <span>Try it free</span>
+                </a>
+                <a href="/pricing" class="hero-btn hero-btn-secondary">View Plans</a>
+            </div>
+            <p style="margin-bottom:28px;color:#475569;font-size:0.85rem;">Plans from £6.99/month &nbsp;·&nbsp; No credit card needed</p>
+
+            <!-- Visual flow -->
+            <div class="hero-flow" style="display:flex;align-items:center;justify-content:center;gap:0;margin:0 auto 24px;max-width:580px;flex-wrap:wrap;">
+
+                <!-- Step 1 -->
+                <div class="hero-flow-card" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:14px 20px;text-align:center;min-width:138px;">
+                    <div style="display:flex;justify-content:center;margin-bottom:8px;">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
+                        </svg>
+                    </div>
+                    <div style="font-size:0.78rem;font-weight:700;color:#e2e8f0;">Paste your CV</div>
+                    <div style="font-size:0.7rem;color:#64748b;margin-top:2px;">+ job description</div>
+                </div>
+
+                <div class="hero-flow-arrow" style="color:#34d399;padding:0 10px;flex-shrink:0;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="hero-flow-card" style="background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.3);border-radius:12px;padding:14px 20px;text-align:center;min-width:138px;">
+                    <div style="display:flex;justify-content:center;margin-bottom:8px;">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/>
+                        </svg>
+                    </div>
+                    <div style="font-size:0.78rem;font-weight:700;color:#e2e8f0;">Answer out loud</div>
+                    <div style="font-size:0.7rem;color:#64748b;margin-top:2px;">or type your answer</div>
+                </div>
+
+                <div class="hero-flow-arrow" style="color:#34d399;padding:0 10px;flex-shrink:0;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="hero-flow-card" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:14px 20px;text-align:center;min-width:138px;">
+                    <div style="display:flex;justify-content:center;margin-bottom:8px;">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+                        </svg>
+                    </div>
+                    <div style="font-size:0.78rem;font-weight:700;color:#e2e8f0;">Get feedback</div>
+                    <div style="font-size:0.7rem;color:#64748b;margin-top:2px;">score + delivery stats</div>
+                </div>
+            </div>
+
+            <!-- Mock feedback preview -->
+            <div style="background:rgba(15,23,42,0.6);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:14px 18px;margin-bottom:0;text-align:left;backdrop-filter:blur(10px);max-width:500px;margin-left:auto;margin-right:auto;">
+                <div style="font-size:0.68rem;color:#475569;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;">What you get after each answer</div>
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+                    <span style="background:linear-gradient(135deg,#10b981,#14b8a6);color:white;font-weight:800;font-size:1rem;padding:3px 12px;border-radius:7px;white-space:nowrap;">8.2 / 10</span>
+                    <span style="color:#94a3b8;font-size:0.82rem;">Strong answer — one key improvement below</span>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:10px;">
+                    <div style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:7px;padding:7px 10px;font-size:0.76rem;color:#6ee7b7; display:flex;align-items:center;gap:6px;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Strengths
+                    </div>
+                    <div style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);border-radius:7px;padding:7px 10px;font-size:0.76rem;color:#fcd34d;display:flex;align-items:center;gap:6px;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>What to improve
+                    </div>
+                    <div style="background:rgba(139,92,246,0.08);border:1px solid rgba(139,92,246,0.2);border-radius:7px;padding:7px 10px;font-size:0.76rem;color:#c4b5fd;display:flex;align-items:center;gap:6px;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Model answer
+                    </div>
+                    <div style="background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.2);border-radius:7px;padding:7px 10px;font-size:0.76rem;color:#93c5fd;display:flex;align-items:center;gap:6px;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Interview tips
+                    </div>
+                </div>
+                <div style="display:flex;gap:16px;font-size:0.75rem;color:#475569;border-top:1px solid rgba(255,255,255,0.07);padding-top:9px;">
+                    <span>Pace: <strong style="color:#6ee7b7;">128 wpm — Ideal</strong></span>
+                    <span>Fillers: <strong style="color:#6ee7b7;">2</strong></span>
+                    <span>Confidence: <strong style="color:#6ee7b7;">High</strong></span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="shape-1"></div>
+        <div class="shape-2"></div>
+        
+        <div class="features-container">
+            <h2 class="section-title">Practice Until Perfect, Then Walk In Confident</h2>
+            <p style="text-align: center; color: #cbd5e1; font-size: 1.2rem; margin-bottom: 60px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Get interview feedback that used to cost £200/hour with a coach—available 24/7 for unlimited practice
+            </p>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3 class="feature-title">Questions That Actually Get Asked</h3>
+                    <p class="feature-description">500+ curated questions from real Google, Amazon, Meta, and McKinsey interviews. Behavioral, technical, and case study questions tailored to your role and industry.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h3 class="feature-title">Know Exactly What to Fix</h3>
+                    <p class="feature-description">AI analysis of your communication skills, speaking pace, confidence level, and answer structure. See your weak points highlighted—no more guessing what went wrong.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h3 class="feature-title">Voice or Text—Your Choice</h3>
+                    <p class="feature-description">Simulate real video interviews with voice mode, or practice on your lunch break with text mode. Both give you the same quality feedback.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h3 class="feature-title">Watch Yourself Improve</h3>
+                    <p class="feature-description">Performance dashboard shows your improvement over time. Export reports to review before your real interview. See exactly which question types you've mastered.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interview Types Section -->
+    <section class="stats-section">
+        <div class="stats-container">
+            <h2 class="section-title">Master Every Type of Job Interview</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Behavioral Interview Questions</div>
+                    <p style="color: #cbd5e1; font-size: 0.95rem; margin-top: 10px;">STAR method coaching, situational questions, competency-based interviews</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Technical Interview Practice</div>
+                    <p style="color: #cbd5e1; font-size: 0.95rem; margin-top: 10px;">Coding challenges, system design, algorithm questions, live coding</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Company-Specific Prep</div>
+                    <p style="color: #cbd5e1; font-size: 0.95rem; margin-top: 10px;">Google, Amazon, Microsoft, Meta, consulting firm questions</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Case Study Interviews</div>
+                    <p style="color: #cbd5e1; font-size: 0.95rem; margin-top: 10px;">Business cases, consulting frameworks, analytical thinking</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What Makes Us Different Section -->
+    <section class="testimonials-section">
+        <div class="testimonials-container">
+            <h2 class="section-title">Why People Choose Good Chat</h2>
+            <p style="text-align: center; color: #cbd5e1; font-size: 1.2rem; margin-bottom: 60px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Built for people who want honest, specific feedback — not generic tips you could find on Google.
+            </p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"I had no idea I was saying 'um' and 'like' constantly until the delivery analysis showed me. Seeing it written out — 14 fillers in 90 seconds — was a wake-up call I couldn't ignore."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <div class="author-name">Early user, UX Designer</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"The questions were actually relevant to my job. Not generic 'tell me about a time you worked in a team' stuff — specific to what a criminal defense lawyer actually does day to day."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <div class="author-name">Early user, Legal Professional</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"The model answer feature shows you what a strong response looks like side by side with yours. That comparison alone is worth the price."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <div class="author-name">Early user, Product Manager</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interview Guides Section -->
+    <section class="interview-guides-section" style="padding: 80px 20px; background: #0a1a14;">
+        <div style="max-width: 1100px; margin: 0 auto;">
+            <h2 style="font-size: 2rem; font-weight: 700; color: white; text-align: center; margin-bottom: 12px;">Free Interview Guides</h2>
+            <p style="text-align: center; color: #94a3b8; font-size: 1.1rem; margin-bottom: 50px; max-width: 600px; margin-left: auto; margin-right: auto;">Expert answers to the questions that trip people up most. Read the guide, then practise with AI.</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">
+                <a href="/guides/tell-me-about-yourself" style="display: block; padding: 24px; background: rgba(255,255,255,0.04); border: 1px solid rgba(16,185,129,0.2); border-radius: 12px; text-decoration: none; color: white; transition: all 0.2s;" onmouseover="this.style.background='rgba(16,185,129,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+                    <div style="font-weight: 600; margin-bottom: 8px;">How to Answer "Tell Me About Yourself"</div>
+                    <div style="color: #94a3b8; font-size: 0.9rem;">The most common interview opener — and the one most people get wrong. 8 min read.</div>
+                </a>
+                <a href="/guides/what-is-your-weakness" style="display: block; padding: 24px; background: rgba(255,255,255,0.04); border: 1px solid rgba(16,185,129,0.2); border-radius: 12px; text-decoration: none; color: white; transition: all 0.2s;" onmouseover="this.style.background='rgba(16,185,129,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+                    <div style="font-weight: 600; margin-bottom: 8px;">How to Answer "What Is Your Weakness?"</div>
+                    <div style="color: #94a3b8; font-size: 0.9rem;">Turn the dreaded weakness question into a strength. 7 min read.</div>
+                </a>
+                <a href="/guides/why-should-we-hire-you" style="display: block; padding: 24px; background: rgba(255,255,255,0.04); border: 1px solid rgba(16,185,129,0.2); border-radius: 12px; text-decoration: none; color: white; transition: all 0.2s;" onmouseover="this.style.background='rgba(16,185,129,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+                    <div style="font-weight: 600; margin-bottom: 8px;">How to Answer "Why Should We Hire You?"</div>
+                    <div style="color: #94a3b8; font-size: 0.9rem;">Make a compelling case that separates you from other candidates. 7 min read.</div>
+                </a>
+                <a href="/guides/50-behavioral-interview-questions" style="display: block; padding: 24px; background: rgba(255,255,255,0.04); border: 1px solid rgba(16,185,129,0.2); border-radius: 12px; text-decoration: none; color: white; transition: all 0.2s;" onmouseover="this.style.background='rgba(16,185,129,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+                    <div style="font-weight: 600; margin-bottom: 8px;">50 Behavioural Interview Questions</div>
+                    <div style="color: #94a3b8; font-size: 0.9rem;">The complete list with STAR-method answers for each one. 15 min read.</div>
+                </a>
+                <a href="/guides/prepare-for-interview-in-one-week" style="display: block; padding: 24px; background: rgba(255,255,255,0.04); border: 1px solid rgba(16,185,129,0.2); border-radius: 12px; text-decoration: none; color: white; transition: all 0.2s;" onmouseover="this.style.background='rgba(16,185,129,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+                    <div style="font-weight: 600; margin-bottom: 8px;">How to Prepare for an Interview in One Week</div>
+                    <div style="color: #94a3b8; font-size: 0.9rem;">Day-by-day plan to go from unprepared to confident. 10 min read.</div>
+                </a>
+                <a href="/guides/prepare-for-interview-in-one-day" style="display: block; padding: 24px; background: rgba(255,255,255,0.04); border: 1px solid rgba(16,185,129,0.2); border-radius: 12px; text-decoration: none; color: white; transition: all 0.2s;" onmouseover="this.style.background='rgba(16,185,129,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+                    <div style="font-weight: 600; margin-bottom: 8px;">How to Prepare for an Interview in One Day</div>
+                    <div style="color: #94a3b8; font-size: 0.9rem;">Interview tomorrow? A focused 24-hour plan. 10 min read.</div>
+                </a>
+                <a href="/guides/common-interview-mistakes" style="display: block; padding: 24px; background: rgba(255,255,255,0.04); border: 1px solid rgba(16,185,129,0.2); border-radius: 12px; text-decoration: none; color: white; transition: all 0.2s;" onmouseover="this.style.background='rgba(16,185,129,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+                    <div style="font-weight: 600; margin-bottom: 8px;">Common Interview Mistakes to Avoid</div>
+                    <div style="color: #94a3b8; font-size: 0.9rem;">The mistakes that cost candidates the job — and how to avoid them. 8 min read.</div>
+                </a>
+                <a href="/guides/interview-anxiety" style="display: block; padding: 24px; background: rgba(255,255,255,0.04); border: 1px solid rgba(16,185,129,0.2); border-radius: 12px; text-decoration: none; color: white; transition: all 0.2s;" onmouseover="this.style.background='rgba(16,185,129,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+                    <div style="font-weight: 600; margin-bottom: 8px;">How to Overcome Interview Anxiety</div>
+                    <div style="color: #94a3b8; font-size: 0.9rem;">Practical techniques to calm nerves and perform under pressure. 9 min read.</div>
+                </a>
+                <a href="/guides/stop-saying-um" style="display: block; padding: 24px; background: rgba(255,255,255,0.04); border: 1px solid rgba(16,185,129,0.2); border-radius: 12px; text-decoration: none; color: white; transition: all 0.2s;" onmouseover="this.style.background='rgba(16,185,129,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+                    <div style="font-weight: 600; margin-bottom: 8px;">How to Stop Saying "Um" in Interviews</div>
+                    <div style="color: #94a3b8; font-size: 0.9rem;">Break filler-word habits and speak with confidence. 7 min read.</div>
+                </a>
+                <a href="/guides/what-are-your-strengths" style="display: block; padding: 24px; background: rgba(255,255,255,0.04); border: 1px solid rgba(16,185,129,0.2); border-radius: 12px; text-decoration: none; color: white; transition: all 0.2s;" onmouseover="this.style.background='rgba(16,185,129,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+                    <div style="font-weight: 600; margin-bottom: 8px;">How to Answer "What Are Your Strengths?"</div>
+                    <div style="color: #94a3b8; font-size: 0.9rem;">Pick relevant strengths and back them up with evidence. 6 min read.</div>
+                </a>
+                <a href="/guides/where-do-you-see-yourself-in-5-years" style="display: block; padding: 24px; background: rgba(255,255,255,0.04); border: 1px solid rgba(16,185,129,0.2); border-radius: 12px; text-decoration: none; color: white; transition: all 0.2s;" onmouseover="this.style.background='rgba(16,185,129,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+                    <div style="font-weight: 600; margin-bottom: 8px;">How to Answer "Where Do You See Yourself in 5 Years?"</div>
+                    <div style="color: #94a3b8; font-size: 0.9rem;">Show ambition without sounding like you're about to leave. 7 min read.</div>
+                </a>
+                <a href="/guides/why-do-you-want-to-work-here" style="display: block; padding: 24px; background: rgba(255,255,255,0.04); border: 1px solid rgba(16,185,129,0.2); border-radius: 12px; text-decoration: none; color: white; transition: all 0.2s;" onmouseover="this.style.background='rgba(16,185,129,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+                    <div style="font-weight: 600; margin-bottom: 8px;">How to Answer "Why Do You Want to Work Here?"</div>
+                    <div style="color: #94a3b8; font-size: 0.9rem;">Research-driven answers that show genuine motivation. 7 min read.</div>
+                </a>
+                <a href="/guides/salary-expectations" style="display: block; padding: 24px; background: rgba(255,255,255,0.04); border: 1px solid rgba(16,185,129,0.2); border-radius: 12px; text-decoration: none; color: white; transition: all 0.2s;" onmouseover="this.style.background='rgba(16,185,129,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+                    <div style="font-weight: 600; margin-bottom: 8px;">How to Answer "What Are Your Salary Expectations?"</div>
+                    <div style="color: #94a3b8; font-size: 0.9rem;">Research the market, give a range, and negotiate confidently. 8 min read.</div>
+                </a>
+                <a href="/guides/" style="display: block; padding: 24px; background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.3); border-radius: 12px; text-decoration: none; color: #10b981; font-weight: 600; text-align: center; transition: all 0.2s;" onmouseover="this.style.background='rgba(16,185,129,0.12)'" onmouseout="this.style.background='rgba(16,185,129,0.06)'">
+                    View all guides →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="faq-container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">How is this different from practicing with ChatGPT?</div>
+                    <div class="faq-answer">Good Chat asks follow-up questions like real interviewers, catches speech patterns ChatGPT can't hear, and gives structured feedback on communication skills—not just answer quality. We're built specifically for interview prep, not general conversation.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Can I practice company-specific interview questions?</div>
+                    <div class="faq-answer">Absolutely! Our platform includes actual interview questions from Google, Amazon, Microsoft, Meta, consulting firms like McKinsey, and 500+ other companies across all industries.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Is my data secure?</div>
+                    <div class="faq-answer">Absolutely. We use enterprise-grade encryption to protect your personal information and interview data. Your privacy is our top priority.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Will practicing with AI really help me in a real interview?</div>
+                    <div class="faq-answer">Yes. The hardest part of interviews isn't knowing the answers—it's delivering them clearly under pressure. Our users report feeling dramatically less nervous because they've already answered the same types of questions dozens of times.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What types of interviews are supported?</div>
+                    <div class="faq-answer">We support behavioral, technical, case study, and situational interviews across various roles including software engineering, product management, consulting, and more.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Can I get feedback on my voice and delivery?</div>
+                    <div class="faq-answer">Yes, our AI analyzes not just your content but also your speaking pace, clarity, and confidence level to provide comprehensive feedback on your interview performance.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="floating-element float-1"></div>
+        <div class="floating-element float-2"></div>
+        
+        <div class="cta-content">
+            <h2 class="cta-title">Your Next Interview Could Change Your Career. Be Ready.</h2>
+            <p class="cta-description">Stop hoping you'll figure it out on the spot. Practice with AI that gives you honest feedback, unlimited times, until you're confident.</p>
+            <div class="hero-buttons">
+                <a href="/practice" class="hero-btn hero-btn-primary">
+                    <span>Start Your Free Mock Interview</span>
+                </a>
+                <p style="margin-top: 20px; color: #cbd5e1; font-size: 0.95rem;">Plans from £6.99/month &nbsp;·&nbsp; No credit card needed to try</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <h3 class="footer-logo">Good Chat</h3>
+                        <p class="footer-tagline">Master your interviews with AI-powered coaching</p>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-title">Product</h4>
+                    <ul class="footer-links">
+                        <li><a href="/practice">Practice Interview</a></li>
+                        <li><a href="/pricing">Pricing</a></li>
+                        <li><a href="/dashboard">Dashboard</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-title">Account</h4>
+                    <ul class="footer-links">
+                        <li><a href="/login">Sign In</a></li>
+                        <li><a href="/signup">Sign Up</a></li>
+                        <li><a href="/profile">Profile</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-title">Interview Guides</h4>
+                    <ul class="footer-links">
+                        <li><a href="/guides/">All Guides</a></li>
+                        <li><a href="/guides/tell-me-about-yourself">Tell Me About Yourself</a></li>
+                        <li><a href="/guides/what-is-your-weakness">What Is Your Weakness</a></li>
+                        <li><a href="/guides/why-should-we-hire-you">Why Should We Hire You</a></li>
+                        <li><a href="/guides/50-behavioral-interview-questions">50 Behavioural Questions</a></li>
+                        <li><a href="/guides/tell-me-about-a-time-you-failed">Tell Me About a Failure</a></li>
+                        <li><a href="/guides/what-motivates-you">What Motivates You</a></li>
+                        <li><a href="/guides/why-are-you-leaving-your-job">Why Are You Leaving?</a></li>
+                        <li><a href="/guides/questions-to-ask-interviewer">Questions to Ask</a></li>
+                        <li><a href="/guides/salary-expectations">Salary Expectations</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-title">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p>&copy; 2025 Good Chat. All rights reserved.</p>
+                </div>
+                <div class="footer-social">
+                    <p>Built for career success</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SPA Content Container -->
+    <div id="app" style="display: none;">
+        <div class="container"></div>
+    </div>
+
+    <script src="/assets/js/canonical-handler.js"></script>
+    <script src="/assets/js/auth.js"></script>
+    <script src="/assets/js/simple-mobile-menu.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/config/questionTypes.js"></script>
+    <script src="/src/router.js"></script>
+    
+    <script>
+        // Update home page content based on authentication status
+        function initHomePageContent() {
+            console.log('Initializing home page content...');
+            // Only run on the home page
+            if (window.location.pathname !== '/' && window.location.pathname !== '/index.html') {
+                console.log('Not on home page, skipping content update');
+                return;
+            }
+            
+            updateHomePageContent();
+            
+            // Check if coming from Google OAuth - do this after updateHomePageContent
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('google_auth') === '1') {
+                console.log('Google auth detected, forcing profile completion check...');
+                
+                // For new Google users, be more aggressive about showing the banner
+                const isNewGoogleUser = urlParams.get('new_google_user') === '1';
+                
+                // Remove the parameters from URL
+                const newUrl = new URL(window.location);
+                newUrl.searchParams.delete('google_auth');
+                newUrl.searchParams.delete('new_google_user');
+                history.replaceState(null, '', newUrl);
+                
+                // Force profile completion check with multiple attempts for new users
+                const checkProfile = () => {
+                    if (typeof authManager !== 'undefined') {
+                        console.log('Running profile completion check for Google user...');
+                        authManager.checkProfileCompletion();
+                    }
+                };
+                
+                // Multiple checks at different intervals for new Google users
+                if (isNewGoogleUser) {
+                    console.log('New Google user detected, scheduling aggressive profile checks');
+                    setTimeout(checkProfile, 500);
+                    setTimeout(checkProfile, 1000);
+                    setTimeout(checkProfile, 1500);
+                    setTimeout(checkProfile, 2000);
+                } else {
+                    setTimeout(checkProfile, 800);
+                }
+            }
+        }
+        
+        // Make function globally available for router
+        window.initHomePageContent = initHomePageContent;
+
+        // Run immediately if DOM is already loaded
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initHomePageContent);
+        } else {
+            // DOM is already loaded, run immediately
+            initHomePageContent();
+        }
+
+        // Also run when page becomes visible (handles navigation cases)
+        document.addEventListener('visibilitychange', function() {
+            if (!document.hidden) {
+                // Add delay to let router handle navigation first
+                setTimeout(() => {
+                    // Double check we're actually on home page before running
+                    if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+                        console.log('Page became visible and we are on home page, updating content');
+                        initHomePageContent();
+                    } else {
+                        console.log('Page became visible but not on home page, path:', window.location.pathname);
+                    }
+                }, 100);
+            }
+        });
+
+        // Handle browser back/forward cache (especially important for mobile)
+        window.addEventListener('pageshow', function(event) {
+            // If page was restored from cache, ensure correct content is shown
+            if (event.persisted) {
+                console.log('Page restored from cache, checking path:', window.location.pathname);
+                setTimeout(() => {
+                    if (window.location.pathname !== '/' && window.location.pathname !== '/index.html') {
+                        console.log('Not on home page after cache restore, hiding home content');
+                        // Ensure home page content is hidden
+                        const sections = document.querySelectorAll('.hero-section, .features-section, .stats-section, .how-it-works-section, .testimonials-section, .faq-section, .cta-section');
+                        sections.forEach(section => {
+                            section.style.display = 'none';
+                            section.style.visibility = 'hidden';
+                        });
+                        // Also hide authenticated user content if it exists
+                        const authenticatedContent = document.querySelector('.authenticated-user-content');
+                        if (authenticatedContent) {
+                            authenticatedContent.style.display = 'none';
+                        }
+                    } else {
+                        console.log('On home page after cache restore, updating content');
+                        initHomePageContent();
+                    }
+                }, 50);
+            }
+        });
+
+        async function updateHomePageContent() {
+            console.log('Updating home page content...');
+            
+            // Only run on the home page
+            if (window.location.pathname !== '/' && window.location.pathname !== '/index.html') {
+                console.log('Not on home page, skipping home page content update');
+                return;
+            }
+            
+            const token = localStorage.getItem('authToken');
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            
+            console.log('Auth check:', { hasToken: !!token, hasEmail: !!user.email, user: user });
+            
+            if (token && user.email && isValidToken(token)) {
+                console.log('User is authenticated - showing personalized content');
+                // User is logged in - personalize the content
+                await updateHomePageForAuthenticatedUser(user);
+                
+                // Check subscription status after content is created
+                await checkSubscriptionStatus(token);
+            } else {
+                console.log('User is not authenticated - showing marketing content');
+                // User is not logged in - show default content
+                resetHomePageToDefault();
+            }
+        }
+
+        function isValidToken(token) {
+            try {
+                const payload = JSON.parse(atob(token.split('.')[1]));
+                return payload.exp > Date.now() / 1000;
+            } catch (error) {
+                return false;
+            }
+        }
+
+        function resetHomePageToDefault() {
+            console.log('Resetting to default home page for non-authenticated user');
+            
+            // Only run on the home page
+            if (window.location.pathname !== '/' && window.location.pathname !== '/index.html') {
+                console.log('Not on home page, skipping home page reset');
+                return;
+            }
+            
+            // Remove authenticated user content completely
+            const authenticatedContent = document.querySelector('.authenticated-user-content');
+            if (authenticatedContent) {
+                authenticatedContent.remove();
+                console.log('Removed authenticated user content on logout');
+            }
+
+            // Remove any subscription info if present
+            const subscriptionInfo = document.querySelector('.subscription-info-home');
+            if (subscriptionInfo) {
+                subscriptionInfo.remove();
+            }
+
+            // Remove force hide styles
+            const forceHideStyle = document.getElementById('force-hide-marketing');
+            if (forceHideStyle) {
+                forceHideStyle.remove();
+                console.log('Removed force hide marketing styles');
+            }
+
+            // Remove authenticated user class from body
+            document.body.classList.remove('authenticated-user');
+
+            // Show marketing sections for non-authenticated users
+            showMarketingSections();
+            
+            // Force multiple calls to ensure sections are visible
+            setTimeout(() => {
+                showMarketingSections();
+                console.log('Second call to showMarketingSections completed');
+            }, 50);
+            
+            setTimeout(() => {
+                showMarketingSections();
+                console.log('Third call to showMarketingSections completed');
+            }, 100);
+
+            // Reset hero content to default (in case hero section exists)
+            const heroTitle = document.querySelector('.hero-title');
+            const heroSubtitle = document.querySelector('.hero-subtitle');
+            const heroButtons = document.querySelector('.hero-buttons');
+            
+            if (heroTitle) {
+                heroTitle.innerHTML = 'Answer questions.<br>Know exactly what to fix.';
+            }
+
+            if (heroSubtitle) {
+                heroSubtitle.textContent = 'Paste your CV and job description. The AI generates questions specific to your role, listens to your answer, and tells you in seconds what worked and what didn\'t.';
+            }
+
+            if (heroButtons) {
+                heroButtons.innerHTML = `
+                    <a href="/practice" class="hero-btn hero-btn-primary">
+                        <span>Try it free</span>
+                    </a>
+                    <a href="/pricing" class="hero-btn hero-btn-secondary">View Plans</a>
+                `;
+            }
+        }
+
+        // Listen for storage changes (when user logs out in another tab)
+        window.addEventListener('storage', function(e) {
+            if (e.key === 'authToken' || e.key === 'user') {
+                console.log('Storage change detected:', e.key, 'new value:', e.newValue);
+                setTimeout(async () => {
+                    await updateHomePageContent();
+                }, 100); // Small delay to ensure storage is updated
+            }
+        });
+        
+        async function updateHomePageForAuthenticatedUser(user) {
+            console.log('Setting up authenticated user experience for:', user.name || user.email);
+            
+            // Only run on the home page
+            if (window.location.pathname !== '/' && window.location.pathname !== '/index.html') {
+                console.log('Not on home page, skipping authenticated user home page setup');
+                return;
+            }
+            
+            // Immediately hide all marketing sections
+            hideMarketingSections();
+            
+            // Force hide sections with !important styles as backup
+            forceHideMarketingSections();
+            
+            // Create and show authenticated user content
+            await createAuthenticatedUserContent(user);
+        }
+
+        async function createAuthenticatedUserContent(user) {
+            // Remove ALL existing authenticated content to prevent any duplicates
+            const existingContents = document.querySelectorAll('.authenticated-user-content');
+            existingContents.forEach(content => {
+                console.log('Removing existing authenticated content');
+                content.remove();
+            });
+            
+            // Check test access and subscription status
+            let hasTestAccess = false;
+            let hasActiveSubscription = false;
+            try {
+                const token = localStorage.getItem('authToken');
+                
+                // Check subscription status first
+                const subscriptionResponse = await fetch('/api/subscription/status', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                if (subscriptionResponse.ok) {
+                    const subscriptionData = await subscriptionResponse.json();
+                    hasActiveSubscription = subscriptionData.hasActiveSubscription;
+                }
+                
+                // Only check test access if user doesn't have active subscription
+                if (!hasActiveSubscription) {
+                    const testResponse = await fetch('/api/check-test-access', {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
+                    if (testResponse.ok) {
+                        const testData = await testResponse.json();
+                        hasTestAccess = testData.hasAccess;
+                    }
+                }
+            } catch (error) {
+                console.error('Error checking access:', error);
+            }
+
+            // Create new authenticated user content
+            const authenticatedContent = document.createElement('div');
+            authenticatedContent.className = 'authenticated-user-content';
+            
+            // Build buttons based on subscription status
+            let buttonsHTML = `
+                <a href="/practice" class="auth-btn auth-btn-primary">
+                    <span>Practice Now</span>
+                </a>
+                <a href="/dashboard" class="auth-btn auth-btn-secondary">View Dashboard</a>
+            `;
+            
+            // Only show Test Mode for users WITHOUT active subscription who haven't used test yet
+            if (!hasActiveSubscription && hasTestAccess) {
+                buttonsHTML += `
+                    <a href="/test" class="auth-btn auth-btn-tertiary">
+                        <span>Try Test Mode</span>
+                    </a>
+                `;
+            }
+            
+            authenticatedContent.innerHTML = `
+                <div class="auth-header">
+                    <h1>Welcome, ${user.name ? user.name.split(' ')[0].charAt(0).toUpperCase() + user.name.split(' ')[0].slice(1).toLowerCase() : user.email}!</h1>
+                    <p>Continue your interview preparation journey with personalized practice sessions.</p>
+                </div>
+                <div id="authSubscriptionInfo" class="auth-subscription-placeholder">
+                    <div class="loading-subscription">Loading subscription details...</div>
+                </div>
+                <div class="auth-actions">
+                    ${buttonsHTML}
+                </div>
+            `;
+
+            // Remove any existing authenticated content first to prevent duplicates
+            const existingAuthContent = document.querySelectorAll('.authenticated-user-content');
+            existingAuthContent.forEach(content => content.remove());
+            
+            // Insert authenticated content after the FIRST navigation container only
+            const containers = document.querySelectorAll('.container');
+            if (containers.length > 0) {
+                // Use the first container (the navigation one)
+                containers[0].insertAdjacentElement('afterend', authenticatedContent);
+                
+                // Check if profile completion banner should be shown (after DOM is ready)
+                setTimeout(() => {
+                    if (typeof authManager !== 'undefined') {
+                        authManager.checkProfileCompletion();
+                        
+                        // Also check for Google auth parameter for additional trigger
+                        const urlParams = new URLSearchParams(window.location.search);
+                        if (urlParams.get('google_auth') === '1') {
+                            console.log('Google auth detected in authenticated content creation, forcing profile check...');
+                            setTimeout(() => {
+                                authManager.checkProfileCompletion();
+                            }, 300);
+                        }
+                    }
+                }, 200);
+            }
+        }
+
+        function hideMarketingSections() {
+            console.log('Hiding marketing sections for authenticated user');
+            
+            // Only run on the home page
+            if (window.location.pathname !== '/' && window.location.pathname !== '/index.html') {
+                console.log('Not on home page, skipping marketing section hiding');
+                return;
+            }
+            
+            // List of all marketing sections to hide (footer excluded - shows for all users)
+            const sectionsToHide = [
+                '.hero-section',
+                '.features-section', 
+                '.stats-section',
+                '.how-it-works-section',
+                '.testimonials-section',
+                '.faq-section',
+                '.cta-section'
+            ];
+
+            sectionsToHide.forEach(selector => {
+                const section = document.querySelector(selector);
+                if (section) {
+                    section.style.display = 'none';
+                    console.log(`Hidden section: ${selector}`);
+                } else {
+                    console.log(`Section not found: ${selector}`);
+                }
+            });
+            
+            console.log('Marketing sections hidden successfully');
+        }
+
+        function forceHideMarketingSections() {
+            console.log('Force hiding marketing sections with !important styles');
+            
+            // Create or update style element to force hide marketing sections
+            let forceHideStyle = document.getElementById('force-hide-marketing');
+            if (!forceHideStyle) {
+                forceHideStyle = document.createElement('style');
+                forceHideStyle.id = 'force-hide-marketing';
+                document.head.appendChild(forceHideStyle);
+            }
+            
+            forceHideStyle.textContent = `
+                body.authenticated-user .hero-section,
+                body.authenticated-user .features-section,
+                body.authenticated-user .stats-section,
+                body.authenticated-user .how-it-works-section,
+                body.authenticated-user .testimonials-section,
+                body.authenticated-user .faq-section,
+                body.authenticated-user .cta-section {
+                    display: none !important;
+                    visibility: hidden !important;
+                    opacity: 0 !important;
+                    height: 0 !important;
+                    margin: 0 !important;
+                    padding: 0 !important;
+                    overflow: hidden !important;
+                }
+            `;
+            
+            // Add class to body to help with CSS targeting
+            document.body.classList.add('authenticated-user');
+            
+            console.log('Force hide styles applied');
+        }
+
+        function showMarketingSections() {
+            console.log('Showing marketing sections for non-authenticated user');
+            
+            // Only run on the home page
+            if (window.location.pathname !== '/' && window.location.pathname !== '/index.html') {
+                console.log('Not on home page, skipping marketing section showing');
+                return;
+            }
+            
+            // Remove authenticated user class from body FIRST
+            document.body.classList.remove('authenticated-user');
+            
+            // Remove force hide styles
+            const forceHideStyle = document.getElementById('force-hide-marketing');
+            if (forceHideStyle) {
+                forceHideStyle.remove();
+                console.log('Removed force hide marketing styles during show');
+            }
+            
+            // List of marketing sections to show with their default display values (footer excluded - always visible)
+            const sectionsToShow = [
+                { selector: '.hero-section', display: 'flex' },
+                { selector: '.features-section', display: 'block' }, 
+                { selector: '.stats-section', display: 'block' },
+                { selector: '.how-it-works-section', display: 'block' },
+                { selector: '.testimonials-section', display: 'block' },
+                { selector: '.faq-section', display: 'block' },
+                { selector: '.cta-section', display: 'block' }
+            ];
+
+            // Force a reflow by reading offsetHeight
+            document.body.offsetHeight;
+
+            sectionsToShow.forEach(({ selector, display }) => {
+                const section = document.querySelector(selector);
+                if (section) {
+                    // Remove ALL inline styles first
+                    section.removeAttribute('style');
+                    
+                    // Then set the correct display
+                    section.style.display = display;
+                    section.style.visibility = 'visible';
+                    
+                    console.log(`Shown section: ${selector} (${display})`);
+                } else {
+                    console.log(`Section not found: ${selector}`);
+                }
+            });
+            
+            // Force another reflow to ensure changes take effect
+            document.body.offsetHeight;
+            
+            console.log('Marketing sections shown successfully');
+        }
+        
+        async function checkSubscriptionStatus(token) {
+            try {
+                // Add timeout to prevent hanging
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 second timeout
+                
+                const response = await fetch('/api/subscription/status', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    signal: controller.signal
+                });
+                
+                clearTimeout(timeoutId);
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    const authSubscriptionInfo = document.querySelector('#authSubscriptionInfo');
+                    if (!authSubscriptionInfo) return; // Exit if authenticated content area doesn't exist
+
+                    if (data.hasActiveSubscription && data.subscription) {
+                        // Calculate warnings
+                        const questionsRemaining = data.subscription.questions_remaining;
+                        const expiryDate = new Date(data.subscription.expiry_date);
+                        const today = new Date();
+                        const daysRemaining = Math.ceil((expiryDate - today) / (1000 * 60 * 60 * 24));
+                        
+                        const lowQuestions = questionsRemaining <= 10;
+                        const expiringsSoon = daysRemaining <= 7;
+                        const showWarning = lowQuestions || expiringsSoon;
+                        // A trial user has never actually had a paid subscription, so
+                        // "Extend Subscription" doesn't make sense for them yet.
+                        const isTrialUser = (data.subscription.subscriptions || []).some(s => s.package_id === 3);
+
+                        // Show active subscription info with warnings
+                        authSubscriptionInfo.innerHTML = `
+                            <div class="subscription-info-home">
+                                <div class="subscription-header-home">
+                                    <h3>Your Subscription</h3>
+                                    <span class="subscription-status-badge active">Active</span>
+                                </div>
+                                ${showWarning ? `
+                                    <div class="subscription-warning">
+                                        <div class="warning-icon">⚠️</div>
+                                        <div class="warning-text">
+                                            ${lowQuestions ? `Only ${questionsRemaining} questions remaining!` : ''}
+                                            ${lowQuestions && expiringsSoon ? '<br>' : ''}
+                                            ${expiringsSoon ? `Expires in ${daysRemaining} day${daysRemaining === 1 ? '' : 's'}!` : ''}
+                                        </div>
+                                    </div>
+                                ` : ''}
+                                <div class="subscription-details-home">
+                                    <div class="subscription-stat-home">
+                                        <span class="label">Questions Remaining:</span>
+                                        <span class="value questions-remaining${lowQuestions ? ' warning' : ''}">${data.subscription.questions_remaining}</span>
+                                    </div>
+                                    <div class="subscription-stat-home">
+                                        <span class="label">Valid Until:</span>
+                                        <span class="value${expiringsSoon ? ' warning' : ''}">${new Date(data.subscription.expiry_date).toLocaleDateString('en-GB', {
+                                            day: 'numeric',
+                                            month: 'long',
+                                            year: 'numeric'
+                                        })}</span>
+                                    </div>
+                                </div>
+                                ${showWarning ? `
+                                    <div class="subscription-actions-home">
+                                        <button class="subscription-btn-home primary" onclick="window.location.href='/pricing'">${isTrialUser ? 'Get Started' : 'Extend Subscription'}</button>
+                                    </div>
+                                ` : ''}
+                            </div>
+                        `;
+                    } else {
+                        // Show inactive subscription info
+                        authSubscriptionInfo.innerHTML = `
+                            <div class="subscription-info-home">
+                                <div class="subscription-header-home">
+                                    <h3>Your Subscription</h3>
+                                    <span class="subscription-status-badge inactive">Inactive</span>
+                                </div>
+                                <div class="subscription-details-home">
+                                    <div class="subscription-stat-home">
+                                        <span class="label">Plan:</span>
+                                        <span class="value">No active plan</span>
+                                    </div>
+                                    <div class="subscription-stat-home">
+                                        <span class="label">Questions Remaining:</span>
+                                        <span class="value">0</span>
+                                    </div>
+                                </div>
+                                <div class="subscription-actions-home">
+                                    <button class="subscription-btn-home primary" onclick="window.location.href='/pricing'">Get Started</button>
+                                </div>
+                            </div>
+                        `;
+                    }
+                } else {
+                    // API call failed, show fallback
+                    const authSubscriptionInfo = document.querySelector('#authSubscriptionInfo');
+                    if (authSubscriptionInfo) {
+                        authSubscriptionInfo.innerHTML = `
+                            <div class="subscription-info-home">
+                                <div class="subscription-header-home">
+                                    <h3>Your Subscription</h3>
+                                    <span class="subscription-status-badge inactive">Check Dashboard</span>
+                                </div>
+                                <div class="subscription-details-home">
+                                    <p>Unable to load subscription details. Please check your dashboard for current status.</p>
+                                </div>
+                                <div class="subscription-actions-home">
+                                    <button class="subscription-btn-home secondary" onclick="window.location.href='/dashboard'">View Dashboard</button>
+                                </div>
+                            </div>
+                        `;
+                    }
+                }
+            } catch (error) {
+                console.error('Error checking subscription status:', error);
+                
+                // Show error state instead of infinite loading
+                const authSubscriptionInfo = document.querySelector('#authSubscriptionInfo');
+                if (authSubscriptionInfo) {
+                    authSubscriptionInfo.innerHTML = `
+                        <div class="subscription-info-home">
+                            <div class="subscription-header-home">
+                                <h3>Your Subscription</h3>
+                                <span class="subscription-status-badge inactive">Error</span>
+                            </div>
+                            <div class="subscription-details-home">
+                                <p>Unable to load subscription details. Please check your dashboard.</p>
+                            </div>
+                            <div class="subscription-actions-home">
+                                <button class="subscription-btn-home secondary" onclick="window.location.href='/dashboard'">View Dashboard</button>
+                                <button class="subscription-btn-home primary" onclick="location.reload()">Retry</button>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+        }
+    </script>
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random horizontal position
+                particle.style.left = Math.random() * 100 + '%';
+                
+                // Staggered animation delays for continuous flow
+                particle.style.animationDelay = (Math.random() * 20) + 's';
+                
+                // Varied durations for natural movement
+                particle.style.animationDuration = (18 + Math.random() * 12) + 's';
+                
+                // Random starting position within the animation
+                particle.style.animationFillMode = 'both';
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Initialize particles on load
+        window.addEventListener('load', createParticles);
+        
+        // Intersection Observer for scroll animations
+        function initScrollAnimations() {
+            // Animate feature cards
+            const featureCards = document.querySelectorAll('.feature-card');
+            const statCards = document.querySelectorAll('.stats-section .stat-card');
+            const stepCards = document.querySelectorAll('.step-card');
+            const testimonialCards = document.querySelectorAll('.testimonial-card');
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.2,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            // Observe feature cards with left/right animation
+            featureCards.forEach(card => {
+                observer.observe(card);
+            });
+            
+            // Observe other cards with fade-up animation
+            [...statCards, ...stepCards, ...testimonialCards, ...faqItems].forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+                observer.observe(card);
+            });
+        }
+        
+        // FAQ functionality
+        function initFAQ() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all other items
+                    faqItems.forEach(otherItem => {
+                        otherItem.classList.remove('active');
+                    });
+                    
+                    // Toggle current item
+                    if (!isActive) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+        }
+        
+        // Initialize scroll animations when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            initScrollAnimations();
+            initFAQ();
+        });
+        
+        // Parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelectorAll('.floating-element');
+            
+            parallax.forEach((element, index) => {
+                const speed = 0.5 + (index * 0.2);
+                element.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+        
+        // Re-initialize scroll animations when router changes pages
+        if (window.router) {
+            const originalShowHomePage = window.router.showHomePage;
+            window.router.showHomePage = function() {
+                originalShowHomePage.call(this);
+                setTimeout(() => {
+                    initScrollAnimations();
+                    initFAQ();
+                }, 100);
+            };
+        }
+    </script>
+    
+
+
+    
+    <!-- Anti-zoom JavaScript -->
+    <script>
+        // Prevent zoom with JavaScript
+        document.addEventListener('gesturestart', function (e) {
+            e.preventDefault();
+        });
+        
+        document.addEventListener('gesturechange', function (e) {
+            e.preventDefault();
+        });
+        
+        document.addEventListener('gestureend', function (e) {
+            e.preventDefault();
+        });
+        
+        // Prevent zoom with wheel/trackpad on desktop
+        document.addEventListener('wheel', function(e) {
+            if (e.ctrlKey) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+        
+        // Prevent zoom with keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && (e.key === '+' || e.key === '-' || e.key === '0')) {
+                e.preventDefault();
+            }
+        });
+        
+        // Additional touch event prevention for mobile zoom
+        // Skip prevention on interactive elements so buttons/links remain clickable
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                const isInteractive = event.target.closest('button, a, input, select, textarea, label, [role="button"]');
+                if (!isInteractive) event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+
+        // Prevent double-tap zoom (multi-touch only)
+        document.addEventListener('touchstart', function(e) {
+            if (e.touches.length > 1) {
+                e.preventDefault();
+            }
+        });
+
+        let lastTouchEnd2 = 0;
+        document.addEventListener('touchend', function(e) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd2 <= 300) {
+                const isInteractive = e.target.closest('button, a, input, select, textarea, label, [role="button"]');
+                if (!isInteractive) e.preventDefault();
+            }
+            lastTouchEnd2 = now;
+        }, false);
+    </script>
+    
+    <!-- Logger script to disable console logs in production -->
+    <script src="/assets/js/logger.js"></script>
+
+    <!-- Reddit Tracking Service -->
+    <script src="/assets/js/reddit-tracking.js"></script>
+</body>
+</html>
